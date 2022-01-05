@@ -1,8 +1,9 @@
 ﻿using ContactReport.Domain.Common;
+using System;
 
-namespace ContactReport.Domain.Entities
+namespace ContactReport.Domain.Contacts
 {
-    public class Kisi:BaseEntity<string>
+    public class Kisi:BaseEntity<Guid>
     {
         public string Ad { get; set; }
         public string Soyad { get; set; }
