@@ -8,5 +8,6 @@ namespace ContactReport.Domain.Entities.Reports
     {
         public RaporDurum RaporDurum { get; set; }
         public int DurumId { get; set; }
+        public string Path { get; set; }
     }
 }

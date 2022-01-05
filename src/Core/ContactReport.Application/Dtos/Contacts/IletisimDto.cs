@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ContactReport.Application.Contacts
+namespace ContactReport.Application.Dtos.Contacts
 {
     public class IletisimDto
     {
