@@ -10,7 +10,7 @@ namespace ContactReport.Application.Mappings.Contacts
         public ContactMapper()
         {
             CreateMap<Iletisim, IletisimDto>().ReverseMap();
-            CreateMap<Kisi, KisiDto>();
+            CreateMap<Kisi, KisiDto>().ReverseMap();
         }
     }
 }
