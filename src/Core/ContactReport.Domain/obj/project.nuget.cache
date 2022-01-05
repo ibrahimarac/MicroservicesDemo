@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "N+1c7hTrflf50U/NAPfaQ8UG8dNycE1ABSEr9CuZViZoam1aeGIz2pprabHaWmMaALsgXiaH5BOw0DvkGRzYCw==",
+  "dgSpecHash": "cHyZALZPLeaPgHbHHey31GFkYuq5v4zNHZL+Ng/whE/7JffanjuQXPK9EqDewHVYatYtp/AAMcT9N2Y6TjZ4RA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ibrahim\\Desktop\\ContactReport\\ContactReportApp\\src\\Core\\ContactReport.Domain\\ContactReport.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

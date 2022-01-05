@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2WWK7TN7oS2U2QHDTbjAlhwM8a47jlH3g0TIHPqNYh2L/1YfNn1ehb2X4tVI10mHyZ9aeYjtp44LNdyyvCL4Sw==",
+  "dgSpecHash": "mhBHx1fcsFErXG8QBR4PBnC1HoT38r33cNmdNgyI3NppPVUY6rDZ1D+UBtFl5tJo/ykRTXgp/Ols1EJGX3Pnew==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ibrahim\\Desktop\\ContactReport\\ContactReportApp\\src\\Core\\ContactReport.Application\\ContactReport.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ibrahim\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\Ibrahim\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Ibrahim\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\Ibrahim\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
