@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{14CF40BC-4A65-4202-BBFB-728B7D0DC9BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{83C75B28-9D85-4BF6-B53C-7355149267D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactReport.Domain", "src\Core\ContactReport.Domain\ContactReport.Domain.csproj", "{2C573678-2A69-4D9F-9809-71369A6E6866}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C573678-2A69-4D9F-9809-71369A6E6866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C573678-2A69-4D9F-9809-71369A6E6866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C573678-2A69-4D9F-9809-71369A6E6866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C573678-2A69-4D9F-9809-71369A6E6866}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83C75B28-9D85-4BF6-B53C-7355149267D0} = {14CF40BC-4A65-4202-BBFB-728B7D0DC9BA}
+		{2C573678-2A69-4D9F-9809-71369A6E6866} = {83C75B28-9D85-4BF6-B53C-7355149267D0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6782F961-4F13-4F0C-B68E-8B2C3F97E64D}
+	EndGlobalSection
+EndGlobal
