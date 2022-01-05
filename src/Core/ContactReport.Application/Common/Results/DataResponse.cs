@@ -1,7 +1,7 @@
 ﻿
 namespace Karatekin.Web.Api.Core.Utilities.Result
 {
-    public class DataResponse<T> : Response, IDataResult<T>
+    public class DataResponse<T> : Response
     {
         public DataResponse(T data, bool success, string message) : base(success, message)
         {

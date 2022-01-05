@@ -1,11 +1,13 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ContactReport.Domain.Common
 {
-    public class BaseEntity<T>:IAuditable
+    public interface IAuditable
     {
-        public T Id { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime LastupDate { get; set; }
     }

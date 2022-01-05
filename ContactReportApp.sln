@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReport.Application",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BF00FCF6-93DB-474E-9548-F014F934E8D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactReport.Persistence", "src\Infrastructure\ContactReport.Persistence\ContactReport.Persistence.csproj", "{9850A384-C636-499B-862C-EE04EFC335F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReport.Infrastructure", "src\Infrastructure\ContactReport.Persistence\ContactReport.Infrastructure.csproj", "{9850A384-C636-499B-862C-EE04EFC335F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

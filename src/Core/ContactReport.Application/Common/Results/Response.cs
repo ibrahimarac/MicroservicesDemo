@@ -3,7 +3,7 @@
 
 namespace Karatekin.Web.Api.Core.Utilities.Result
 {
-    public class Response : IResult
+    public class Response
     {
         public Response(bool success, string message) : this(success)
         {
