@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{83C75B28-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactReport.Domain", "src\Core\ContactReport.Domain\ContactReport.Domain.csproj", "{2C573678-2A69-4D9F-9809-71369A6E6866}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactReport.Application", "src\Core\ContactReport.Application\ContactReport.Application.csproj", "{F9ED0137-7C48-4F12-AE89-BF7B8E8A64EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{2C573678-2A69-4D9F-9809-71369A6E6866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C573678-2A69-4D9F-9809-71369A6E6866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C573678-2A69-4D9F-9809-71369A6E6866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9ED0137-7C48-4F12-AE89-BF7B8E8A64EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9ED0137-7C48-4F12-AE89-BF7B8E8A64EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9ED0137-7C48-4F12-AE89-BF7B8E8A64EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9ED0137-7C48-4F12-AE89-BF7B8E8A64EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -26,6 +32,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{83C75B28-9D85-4BF6-B53C-7355149267D0} = {14CF40BC-4A65-4202-BBFB-728B7D0DC9BA}
 		{2C573678-2A69-4D9F-9809-71369A6E6866} = {83C75B28-9D85-4BF6-B53C-7355149267D0}
+		{F9ED0137-7C48-4F12-AE89-BF7B8E8A64EC} = {83C75B28-9D85-4BF6-B53C-7355149267D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6782F961-4F13-4F0C-B68E-8B2C3F97E64D}
