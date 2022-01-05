@@ -12,5 +12,6 @@ namespace ContactReport.Domain.Entities
         public IletisimBilgiTuru IletisimBilgiTuru { get; set; }
 
         public string BilgiIcerigi { get; set; }
+
     }
 }
