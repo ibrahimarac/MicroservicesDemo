@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "EkkRPgiMxjRCUZo3rNHkOuObZil8GUdpHA1ECQDDHV83JD14Is+TZuFiS0JdmKKyy+ZhJ8kV58KhbKdtrkPNXg==",
+  "dgSpecHash": "ui9B2lgnFiOdb+DWd8CA8RBTtPN0u2jvmH+yJD2x+iD65fNQp1Kc22cZMTN7suoNtoRKm6dfnP8Ta67V4a29vQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ibrahim\\Desktop\\ContactReport\\ContactReportApp\\src\\Core\\ContactReport.Application\\ContactReport.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Ibrahim\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512"
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }
