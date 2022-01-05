@@ -1,5 +1,7 @@
 ﻿using ContactReport.Domain.Common;
+using ContactReport.Domain.Entities.Contacts;
 using System;
+using System.Collections.Generic;
 
 namespace ContactReport.Domain.Contacts
 {
@@ -9,5 +11,6 @@ namespace ContactReport.Domain.Contacts
         public string Soyad { get; set; }
         public string Firma { get; set; }
 
+        public ICollection<Iletisim> IletisimBilgileri { get; set; }
     }
 }
