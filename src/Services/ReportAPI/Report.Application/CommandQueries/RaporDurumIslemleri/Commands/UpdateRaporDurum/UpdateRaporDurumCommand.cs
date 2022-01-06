@@ -2,6 +2,7 @@
 using ContactReport.Application.Common.Exceptions;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
+using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
 using System;
@@ -13,7 +14,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.UpdateR
     public class UpdateRaporDurumCommand : IRequest<Response>
     {
         public Guid Id { get; set; }
-        public string Durum { get; set; }
+        public RaporDurumUpdateDto RaporDurum { get; set; }
     }
 
     public class UpdateRaporDurumCommandHandler : IRequestHandler<UpdateRaporDurumCommand, Response>

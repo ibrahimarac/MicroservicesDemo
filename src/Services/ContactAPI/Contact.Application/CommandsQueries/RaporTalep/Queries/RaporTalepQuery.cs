@@ -1,22 +1,19 @@
-﻿using AutoMapper;
-using Contact.Application.Dtos;
+﻿using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
-using Contact.Domain.Entities;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIletisimByKonum
+namespace Contact.Application.CommandsQueries.RaporTalep.Queries
 {
-    public class GetRaporByKonumQuery : IRequest<Response>
+    public class RaporTalepQuery : IRequest<Response>
     {
         public string Konum { get; set; }
     }
 
-    public class GetRaporByKonumQueryHandler : IRequestHandler<GetRaporByKonumQuery, Response>
+    public class GetRaporByKonumQueryHandler : IRequestHandler<RaporTalepQuery, Response>
     {
         private readonly IIletisimRepository _iletisimRepository;
 
@@ -25,7 +22,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIleti
             _iletisimRepository = iletisimRepository;
         }
 
-        public async Task<Response> Handle(GetRaporByKonumQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(RaporTalepQuery request, CancellationToken cancellationToken)
         {
             var iletisimEntities = await _iletisimRepository.GetByFilter(i => i.Konum == request.Konum);
 

@@ -9,9 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ContactAPI\Contact.Application\Contact.Application.csproj" />
-    <ProjectReference Include="..\..\ContactAPI\Contact.Domain\Contact.Domain.csproj" />
-    <ProjectReference Include="..\..\ContactAPI\Contact.Infrastructure\Contact.Infrastructure.csproj" />
+    <ProjectReference Include="..\Report.Application\Report.Application.csproj" />
+    <ProjectReference Include="..\Report.Domain\Report.Domain.csproj" />
+    <ProjectReference Include="..\Report.Infrastructure\Report.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

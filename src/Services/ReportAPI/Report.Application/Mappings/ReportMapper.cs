@@ -18,7 +18,7 @@ namespace Report.Application.Mappings
 
             CreateMap<RaporDurum, RaporDurumDto>().ReverseMap();
 
-            CreateMap<CreateRaporDurumCommand, RaporDurum>();
+            CreateMap<CreateRaporDurumCommand, RaporDurumDto>().ReverseMap();
         }
     }
 }

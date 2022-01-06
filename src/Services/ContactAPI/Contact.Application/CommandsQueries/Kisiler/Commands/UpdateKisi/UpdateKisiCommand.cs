@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
 using ContactReport.Application.Common.Exceptions;
@@ -13,9 +14,7 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
     public class UpdateKisiCommand : IRequest<Response>
     {
         public Guid Id { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public string Firma { get; set; }
+        public UpdateKisiDto Kisi { get; set; }
     }
 
     public class UpdateKisiCommandHandler : IRequestHandler<UpdateKisiCommand, Response>
@@ -38,7 +37,7 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
                 var response = new ErrorDataResponse<NotFoundException>(exception);
                 return response;
             }
-            var kisiUpdatedEntity = _mapper.Map(request,kisiEntity);
+            var kisiUpdatedEntity = _mapper.Map(request.Kisi,kisiEntity);
             await _kisiRepository.Update(kisiEntity);
             return new SuccessResponse();
         }

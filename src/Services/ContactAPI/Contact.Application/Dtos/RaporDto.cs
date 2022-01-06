@@ -1,7 +1,9 @@
 ﻿
+using MediatR;
+
 namespace Contact.Application.Dtos
 {
-    public class RaporDto
+    public class RaporDto:INotification
     {
         public string Konum { get; set; }
         public int KisiSayisi { get; set; }

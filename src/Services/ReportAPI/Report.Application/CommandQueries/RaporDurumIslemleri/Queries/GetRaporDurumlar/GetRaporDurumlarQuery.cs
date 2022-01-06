@@ -4,7 +4,6 @@ using MediatR;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
