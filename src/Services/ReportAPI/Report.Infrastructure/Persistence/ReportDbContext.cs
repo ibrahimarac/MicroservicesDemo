@@ -20,6 +20,8 @@ namespace Report.Infrastructure.Persistence
         {
             modelBuilder.ApplyConfiguration(new RaporMapping());
             modelBuilder.ApplyConfiguration(new RaporDurumMapping());
+
+            modelBuilder.AddRaporDurumlar();
         }
 
         

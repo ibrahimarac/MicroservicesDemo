@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
+using ContactReport.Application.Common.Exceptions;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using System;
@@ -30,7 +31,14 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
 
         public async Task<Response> Handle(UpdateKisiCommand request, CancellationToken cancellationToken)
         {
-            var kisiEntity = _mapper.Map<UpdateKisiCommand, Kisi>(request);
+            var kisiEntity = await _kisiRepository.GetById(request.Id);
+            if(kisiEntity==null)
+            {
+                var exception = new NotFoundException(nameof(Kisi), request.Id);
+                var response = new ErrorDataResponse<NotFoundException>(exception);
+                return response;
+            }
+            var kisiUpdatedEntity = _mapper.Map(request,kisiEntity);
             await _kisiRepository.Update(kisiEntity);
             return new SuccessResponse();
         }

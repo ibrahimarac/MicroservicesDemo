@@ -31,7 +31,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIleti
         {
             var iletisimEntity = await _iletisimRepository.GetById(request.Id);
             var iletisimDto=_mapper.Map<Iletisim, IletisimDto>(iletisimEntity);
-            return new SuccessDataResponse<RaporDto>(iletisimDto);
+            return new SuccessDataResponse<IletisimDto>(iletisimDto);
         }
     }
 
