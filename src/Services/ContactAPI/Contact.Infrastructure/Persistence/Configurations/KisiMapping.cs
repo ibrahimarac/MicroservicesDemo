@@ -1,4 +1,4 @@
-﻿using ContactReport.Domain.Contacts;
+﻿using Contact.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

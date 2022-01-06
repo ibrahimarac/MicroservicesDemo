@@ -1,24 +1,24 @@
-﻿
-using Contact.Application.Interfaces.Repositories;
-using Contact.Infrastructure.Persistence;
-using Contact.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Core.Application.Behaviors;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
-namespace Contact.Infrastructure
+namespace Contact.Application
 {
     public static class ServiceRegistiration
     {
-        public static void AddPersistenceServices(this IServiceCollection services)
+        public static void AddApplicationServices(this IServiceCollection services)
         {
-            services.AddEntityFrameworkNpgsql()
-                .AddDbContext<ContactDbContext>(
-                    opt => opt.UseNpgsql("User ID=posgres;Password=password;Server=localhost;Port=5432;Database=ContactDB;Integrated Security=true;Pooling=true")
-                );
+            var asm = Assembly.GetExecutingAssembly();
+
+            services.AddAutoMapper(asm);
+            services.AddValidatorsFromAssembly(asm);
+            services.AddMediatR(asm);
 
 
-            services.AddTransient<IKisiRepository, KisiRepository>();
-            services.AddTransient<IIletisimRepository, IletisimRepository>();
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
         }
 
     }

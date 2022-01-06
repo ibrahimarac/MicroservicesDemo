@@ -3,12 +3,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
+using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 
-namespace ContactReport.Application.Common.Behaviors
+namespace Core.Application.Behaviors
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
+        where TResponse:Response
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -27,7 +30,11 @@ namespace ContactReport.Application.Common.Behaviors
                 var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
                 if (failures.Count != 0)
-                    throw new ValidationException(failures);
+                {
+                    var validatonErrorResponse = new ErrorDataResponse<IEnumerable<ValidationFailure>>(failures, "");
+                    return validatonErrorResponse as TResponse;
+                }
+                    
             }
             return await next();
         }

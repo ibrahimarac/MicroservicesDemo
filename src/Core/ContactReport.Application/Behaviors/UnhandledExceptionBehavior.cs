@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ContactReport.Application.Common.Behaviors
+namespace Core.Application.Behaviors
 {
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

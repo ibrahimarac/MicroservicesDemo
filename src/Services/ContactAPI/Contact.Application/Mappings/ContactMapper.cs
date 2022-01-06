@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using ContactReport.Application.Dtos.Contacts;
-using ContactReport.Domain.Contacts;
-using ContactReport.Domain.Entities.Contacts;
+using Contact.Application.Commands.KisiCommands;
+using Contact.Application.Dtos;
+using Contact.Domain.Entities;
 
 namespace Contact.Application.Mappings
 {
@@ -11,6 +11,12 @@ namespace Contact.Application.Mappings
         {
             CreateMap<Iletisim, IletisimDto>().ReverseMap();
             CreateMap<Kisi, KisiDto>().ReverseMap();
+
+            CreateMap<Kisi, KisiVeIletisimDto>()
+                .ForMember(dto=>dto.IletisimBilgileri,m=>m.MapFrom(entity=>entity.IletisimBilgileri));
+
+            CreateMap<CreateKisiCommand, Kisi>().ReverseMap();
+            CreateMap<UpdateKisiCommand, Kisi>().ReverseMap();
         }
     }
 }
