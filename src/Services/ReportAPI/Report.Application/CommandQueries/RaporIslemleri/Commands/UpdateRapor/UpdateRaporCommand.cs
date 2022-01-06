@@ -36,7 +36,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
                 var response = new ErrorDataResponse<NotFoundException>(exception);
                 return response;
             }
-            entity.DurumId = new Guid("2143a48a-7190-4ee0-a894-743733ac09b9");
+            entity.DurumId = request.Id;
             await _raporRepository.Update(entity);
             return new SuccessResponse();
         }

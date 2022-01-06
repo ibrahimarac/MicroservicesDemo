@@ -33,5 +33,6 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Queries.RaporTalep
             await _raporRepository.Add(rapor);
             return new SuccessDataResponse<Guid>(rapor.Id);
         }
+
     }
 }
