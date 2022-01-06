@@ -11,6 +11,11 @@ namespace Report.Application.Mappings
         public ReportMapper()
         {
             CreateMap<Rapor, RaporDto>().ReverseMap();
+
+            CreateMap<Rapor, RaporDetayDto>()
+                .ForMember(rd => rd.DurumId, x => x.MapFrom(r => r.RaporDurum.Id))
+                .ForMember(rd => rd.Durum, x => x.MapFrom(r => r.RaporDurum.Durum));
+
             CreateMap<RaporDurum, RaporDurumDto>().ReverseMap();
 
             CreateMap<CreateRaporDurumCommand, RaporDurum>();

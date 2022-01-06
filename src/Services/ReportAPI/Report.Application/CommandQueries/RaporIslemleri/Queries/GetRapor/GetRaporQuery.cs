@@ -9,27 +9,27 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaporDetay
+namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRapor
 {
-    public class GetRaporDetayQuery:IRequest<Response>
+    public class GetRaporQuery : IRequest<Response>
     {
         public Guid Id { get; set; }
     }
 
-    public class GetRaporDetayQueryHandler : IRequestHandler<GetRaporDetayQuery, Response>
+    public class GetRaporQueryHandler : IRequestHandler<GetRaporQuery, Response>
     {
         private readonly IMapper _mapper;
         private readonly IRaporRepository _raporRepository;
 
-        public GetRaporDetayQueryHandler(IMapper mapper, IRaporRepository raporRepository)
+        public GetRaporQueryHandler(IMapper mapper, IRaporRepository raporRepository)
         {
             _mapper = mapper;
             _raporRepository = raporRepository;
         }
 
-        public async Task<Response> Handle(GetRaporDetayQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(GetRaporQuery request, CancellationToken cancellationToken)
         {
-            var raporDetayEntity = _raporRepository.GetRaporWithRaporDurumlar(request.Id);
+            var raporDetayEntity = await _raporRepository.GetById(request.Id);
 
             if (raporDetayEntity == null)
             {
@@ -38,8 +38,8 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaporDetay
                 return response;
             }
 
-            var raporDetayDto = _mapper.Map<Rapor, RaporDetayDto>(raporDetayEntity);
-            return new SuccessDataResponse<RaporDetayDto>(raporDetayDto);
+            var raporDto = _mapper.Map<Rapor, RaporDto>(raporDetayEntity);
+            return new SuccessDataResponse<RaporDto>(raporDto);
         }
     }
 

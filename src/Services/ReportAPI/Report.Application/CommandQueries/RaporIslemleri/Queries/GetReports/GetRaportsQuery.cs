@@ -32,8 +32,8 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaports
         {
             var raporDetayEntities = await _raporRepository.GetAll();
 
-            var raporDetayDtos = _mapper.Map<IEnumerable<Rapor>, IEnumerable<RaporDto>>(raporDetayEntities);
-            return new SuccessDataResponse<IEnumerable<RaporDto>>(raporDetayDtos);
+            var raporDetayDtos = _mapper.Map<IEnumerable<Rapor>, IEnumerable<RaporDetayDto>>(raporDetayEntities);
+            return new SuccessDataResponse<IEnumerable<RaporDetayDto>>(raporDetayDtos);
         }
     }
 
