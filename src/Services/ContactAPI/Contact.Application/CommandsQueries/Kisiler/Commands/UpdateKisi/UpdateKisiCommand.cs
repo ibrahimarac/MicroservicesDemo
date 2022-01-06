@@ -7,7 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Contact.Application.CommandsQueries.Commands.UpdateKisi
+namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
 {
     public class UpdateKisiCommand : IRequest<Response>
     {

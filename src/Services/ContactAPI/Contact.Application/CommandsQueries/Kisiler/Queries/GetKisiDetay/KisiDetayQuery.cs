@@ -9,7 +9,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Contact.Application.CommandsQueries.Queries.GetKisiDetay
+namespace Contact.Application.CommandsQueries.Kisiler.Queries.GetKisiDetay
 {
     public class KisiDetayQuery:IRequest<Response>
     {

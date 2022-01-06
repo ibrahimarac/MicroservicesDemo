@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Contact.Application.CommandsQueries.Commands.DeleteKisi
+namespace Contact.Application.CommandsQueries.Kisiler.Commands.DeleteKisi
 {
     public class DeleteKisiCommand:IRequest<Response>
     {

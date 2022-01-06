@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Contact.Application.Commands.KisiCommands;
+using Contact.Application.CommandsQueries.Kisiler.Commands.CreateKisi;
+using Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi;
 using Contact.Application.Dtos;
 using Contact.Domain.Entities;
 

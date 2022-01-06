@@ -1,7 +1,6 @@
-﻿using Contact.Application.Commands.KisiCommands;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace Contact.Application.CommandsQueries.Commands.DeleteKisi
+namespace Contact.Application.CommandsQueries.Kisiler.Commands.DeleteKisi
 {
     public class DeleteKisiCommandValidator : AbstractValidator<DeleteKisiCommand>
     {

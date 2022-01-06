@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Contact.Application.CommandsQueries.Queries.GetKisiDetay
+namespace Contact.Application.CommandsQueries.Kisiler.Queries.GetKisiDetay
 {
     public class KisiDetayQueryValidator : AbstractValidator<KisiDetayQuery>
     {

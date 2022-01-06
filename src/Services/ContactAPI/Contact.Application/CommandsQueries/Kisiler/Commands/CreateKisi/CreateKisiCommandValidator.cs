@@ -1,7 +1,6 @@
-﻿using Contact.Application.Commands.CreateKisi;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace Contact.Application.CommandsQueries.Commands.CreateKisi
+namespace Contact.Application.CommandsQueries.Kisiler.Commands.CreateKisi
 {
     public class CreateKisiCommandValidator:AbstractValidator<CreateKisiCommand>
     {

@@ -1,7 +1,7 @@
 ﻿
 using FluentValidation;
 
-namespace Contact.Application.CommandsQueries.Commands.UpdateKisi
+namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
 {
     public class UpdateKisiCommandValidator : AbstractValidator<UpdateKisiCommand>
     {

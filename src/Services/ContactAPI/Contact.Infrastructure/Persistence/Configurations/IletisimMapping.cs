@@ -1,4 +1,4 @@
-﻿using ContactReport.Domain.Entities.Contacts;
+﻿using Contact.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,8 +16,7 @@ namespace Contact.Infrastructure.Persistence.Configurations.Contacts
                 .HasColumnType("varchar(150)");
 
             builder.Property(k => k.KisiId)
-                .HasColumnName("kisi_id")
-                .HasColumnType("varchar(30)");
+                .HasColumnName("kisi_id");
 
             //relation
             builder.HasOne(i => i.Kisi)
@@ -31,7 +30,7 @@ namespace Contact.Infrastructure.Persistence.Configurations.Contacts
 
                 builder.Property(k => k.Telefon)
                 .HasColumnName("konum")
-                .HasColumnType("varchar(12)");
+                .HasColumnType("varchar(14)");
 
             builder.ToTable("iletisim_bilgileri");
         }
