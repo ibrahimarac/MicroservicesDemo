@@ -1,6 +1,9 @@
 ﻿
 using AutoMapper;
 using Report.Application.CommandQueries.RaporDurumIslemleri.Commands.CreateRaporDurum;
+using Report.Application.CommandQueries.RaporDurumIslemleri.Commands.UpdateRaporDurum;
+using Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor;
+using Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor;
 using Report.Application.Dtos;
 using Report.Domain.Entities;
 
@@ -19,6 +22,12 @@ namespace Report.Application.Mappings
             CreateMap<RaporDurum, RaporDurumDto>().ReverseMap();
 
             CreateMap<CreateRaporDurumCommand, RaporDurumDto>().ReverseMap();
+
+            CreateMap<UpdateRaporDurumCommand, RaporDurum>().ReverseMap();
+
+            CreateMap<RaporDto, CreateRaporCommand>().ReverseMap();
+
+            CreateMap<RaporUpdateDto, UpdateRaporCommand>().ReverseMap();
         }
     }
 }

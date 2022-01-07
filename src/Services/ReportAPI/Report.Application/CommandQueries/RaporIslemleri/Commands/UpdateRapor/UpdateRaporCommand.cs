@@ -2,6 +2,7 @@
 using ContactReport.Application.Common.Exceptions;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
+using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
 using System;
@@ -13,17 +14,16 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
     public class UpdateRaporCommand : IRequest<Response>
     {
         public Guid Id { get; set; }
-        public Guid DurumId { get; set; }
+
+        public RaporUpdateDto Rapor { get; set; }
     }
 
     public class UpdateRaporCommandHandler : IRequestHandler<UpdateRaporCommand, Response>
     {
-        private readonly IMapper _mapper;
         private readonly IRaporRepository _raporRepository;
 
-        public UpdateRaporCommandHandler(IMapper mapper,IRaporRepository raporRepository)
+        public UpdateRaporCommandHandler(IRaporRepository raporRepository)
         {
-            _mapper = mapper;
             _raporRepository = raporRepository;
         }
 
@@ -36,7 +36,10 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
                 var response = new ErrorDataResponse<NotFoundException>(exception);
                 return response;
             }
-            entity.DurumId = request.Id;
+            //rapor bilgileri güncelleniyor
+            entity.DurumId = request.Rapor.DurumId;
+            entity.Path = request.Rapor.Path;
+
             await _raporRepository.Update(entity);
             return new SuccessResponse();
         }
