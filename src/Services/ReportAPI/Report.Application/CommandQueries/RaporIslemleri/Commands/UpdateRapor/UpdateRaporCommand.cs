@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ContactReport.Application.Common.Exceptions;
+﻿using ContactReport.Application.Common.Exceptions;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using Report.Application.Dtos;

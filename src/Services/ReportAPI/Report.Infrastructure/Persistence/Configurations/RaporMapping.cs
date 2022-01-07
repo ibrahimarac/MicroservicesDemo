@@ -22,7 +22,7 @@ namespace Report.Infrastructure.Persistence.Configurations
                 .HasForeignKey(r => r.DurumId)
                 .HasConstraintName("Rapor_Rapor_Durum_Durum_Id_Foreign_Key");
 
-            builder.ToTable("rapor_durumlar");
+            builder.ToTable("raporlar");
         }
     }
 }

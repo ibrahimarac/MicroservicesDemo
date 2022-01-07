@@ -13,14 +13,10 @@ namespace Contact.Infrastructure.Persistence.Configurations
                  .HasColumnName("id");
 
             builder.Property(b => b.CreateDate)
-                .HasColumnName("create_date")
-                .HasDefaultValueSql("getdate()")
-                .IsRequired(false);
+                .HasColumnName("create_date");
 
-            builder.Property(b=>b.LastupDate)
-                .HasColumnName("lastup_date")
-                .HasDefaultValueSql("getdate()")
-                .IsRequired(false);
+            builder.Property(b => b.LastupDate)
+                .HasColumnName("lastup_date");
         }
     }
 }

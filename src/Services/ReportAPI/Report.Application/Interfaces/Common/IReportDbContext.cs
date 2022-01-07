@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Report.Domain.Entities;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Report.Application.Interfaces.Common
@@ -8,5 +9,7 @@ namespace Report.Application.Interfaces.Common
     {
         public DbSet<Rapor> Raporlar { get; set; }
         public DbSet<RaporDurum> RaporDurumlar { get; set; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

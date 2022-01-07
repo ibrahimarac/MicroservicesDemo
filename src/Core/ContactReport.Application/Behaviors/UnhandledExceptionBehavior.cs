@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Core.Application.Behaviors
 {
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : IRequest<TResponse>
     {
         private readonly ILogger<TRequest> _logger;
 
@@ -28,5 +29,6 @@ namespace Core.Application.Behaviors
                 throw;
             }
         }
+
     }
 }

@@ -13,15 +13,15 @@ namespace Contact.Infrastructure.Persistence.Configurations.Contacts
 
             builder.Property(k => k.Ad)
                 .HasColumnName("ad")
-                .HasColumnType("varchar(30)");
+                .HasMaxLength(30);
 
             builder.Property(k => k.Soyad)
                 .HasColumnName("soyad")
-                .HasColumnType("varchar(30)");
+                .HasMaxLength(30);
 
             builder.Property(k => k.Firma)
                 .HasColumnName("firma")
-                .HasColumnType("varchar(100)");
+                .HasMaxLength(100);
 
             builder.ToTable("kisiler");
 

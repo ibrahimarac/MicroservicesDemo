@@ -8,5 +8,11 @@ namespace Contact.Domain.Common
         public T Id { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime LastupDate { get; set; }
+
+        public BaseEntity()
+        {
+            CreateDate = DateTime.Now;
+            LastupDate = DateTime.Now;
+        }
     }
 }

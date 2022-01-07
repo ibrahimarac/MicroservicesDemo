@@ -4,7 +4,7 @@ using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
 using Report.Infrastructure.Persistence;
 using System;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Contact.Infrastructure.Repositories
 {
@@ -15,11 +15,11 @@ namespace Contact.Infrastructure.Repositories
 
         }
 
-        public Rapor GetRaporWithRaporDurumlar(Guid id)
+        public async Task<Rapor> GetRaporWithRaporDurumlar(Guid id)
         {
             var context = Context as ReportDbContext;
-            return context.Raporlar.Include(r => r.RaporDurum)
-                .SingleOrDefault();
+            return await context.Raporlar.Include(r => r.RaporDurum)
+                .SingleOrDefaultAsync();
         }
     }
 }

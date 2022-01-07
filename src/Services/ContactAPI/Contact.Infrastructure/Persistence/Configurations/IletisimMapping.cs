@@ -13,7 +13,7 @@ namespace Contact.Infrastructure.Persistence.Configurations.Contacts
 
             builder.Property(k => k.Email)
                 .HasColumnName("email")
-                .HasColumnType("varchar(150)");
+                .HasMaxLength(150);
 
             builder.Property(k => k.KisiId)
                 .HasColumnName("kisi_id");
@@ -26,11 +26,11 @@ namespace Contact.Infrastructure.Persistence.Configurations.Contacts
 
             builder.Property(k => k.Konum)
                 .HasColumnName("konum")
-                .HasColumnType("varchar(30)");
+                .HasMaxLength(30);
 
                 builder.Property(k => k.Telefon)
-                .HasColumnName("konum")
-                .HasColumnType("varchar(14)");
+                .HasColumnName("telefon")
+                .HasMaxLength(14);
 
             builder.ToTable("iletisim_bilgileri");
         }
