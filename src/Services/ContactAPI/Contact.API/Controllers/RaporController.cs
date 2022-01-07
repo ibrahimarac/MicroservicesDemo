@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
-using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateIletisim;
-using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.DeleteIletisim;
-using Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIletisimById;
-using Contact.Application.CommandsQueries.RaporTalep.Queries;
-using Contact.Application.Dtos;
-using Karatekin.Web.Api.Core.Utilities.Result;
+using Contact.Application.CommandsQueries.RaporTalep.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Contact.API.Controllers
@@ -29,8 +23,8 @@ namespace Contact.API.Controllers
         [Route("get-by-konum/{konum}")]
         public async Task<IActionResult> GetByKonum(string konum)
         {
-            var query = new RaporTalepQuery();
-            var result = await _mediator.Send(query);
+            var command = new RaporTalepCommand { Konum = konum };
+            var result = await _mediator.Send(command);
             //Eğer rapor bilgileri başarılı bir şekilde elde edilmişse
             return result.Success ? Ok(result) : BadRequest(result);
         }

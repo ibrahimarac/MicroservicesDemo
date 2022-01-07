@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace Contact.Application.CommandsQueries.RaporTalep.Queries
+namespace Contact.Application.CommandsQueries.RaporTalep.Commands
 {
-    public class RaporTalepQueryValidator : AbstractValidator<RaporTalepQuery>
+    public class RaporTalepCommandValidator : AbstractValidator<RaporTalepCommand>
     {
-        public RaporTalepQueryValidator()
+        public RaporTalepCommandValidator()
         {
             RuleFor(p => p.Konum)
                 .NotEmpty().WithMessage("Konum bilgisi boş bırakılamaz.")

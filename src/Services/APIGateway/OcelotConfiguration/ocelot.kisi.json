@@ -1,0 +1,12 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/kisi/{everything}",
+      "ServiceName": "contact",
+      "UpstreamPathTemplate": "/kisi/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put","Delete" ],
+      "SwaggerKey": "contact"
+    }
+  ]
+}
+

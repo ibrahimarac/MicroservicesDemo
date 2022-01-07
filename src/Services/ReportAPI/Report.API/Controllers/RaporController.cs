@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor;
@@ -7,6 +8,7 @@ using Report.Application.CommandQueries.RaporIslemleri.Queries.GetRapor;
 using Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaporDetay;
 using Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaports;
 using Report.Application.Dtos;
+using Report.Messaging.Send.Sender;
 using System;
 using System.Threading.Tasks;
 
@@ -18,11 +20,13 @@ namespace Report.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
+        private readonly IReportRequestSender _reportRequest;
 
-        public RaporController(IMapper mapper, IMediator mediator)
+        public RaporController(IMapper mapper, IMediator mediator,IReportRequestSender reportRequest)
         {
             _mapper = mapper;
             _mediator = mediator;
+            _reportRequest = reportRequest;
         }
 
         [HttpPost]
@@ -64,12 +68,23 @@ namespace Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("get/{id}")]
+        [Route("get{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var query = new GetRaporQuery { Id = id };
             var result = await _mediator.Send(query);
             return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpGet]
+        [Route("get-by-konum/{konum}")]
+        public IActionResult GetByKonum(string konum)
+        {
+            //rapor isteği kuyruğa aktarılıyor
+            var result = _reportRequest.SendReportRequest(konum);
+            return result ?
+                Ok(new SuccessResponse("Rapor isteği sıraya alındı.")) :
+                BadRequest(new ErrorResponse("Rapor isteği gönderilirken bir hata oluştu."));
         }
 
     }

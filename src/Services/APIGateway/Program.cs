@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MMLib.SwaggerForOcelot.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,10 @@ namespace APIGateway
             .ConfigureAppConfiguration((host,config)=>
             {
                 config.AddJsonFile("ocelot.json");
+                //config.AddOcelotWithSwaggerSupport(options =>
+                //{
+                //    options.Folder = "OcelotConfiguration";
+                //});
             })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

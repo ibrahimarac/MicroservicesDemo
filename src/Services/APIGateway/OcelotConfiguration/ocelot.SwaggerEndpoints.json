@@ -1,0 +1,31 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "kisi",
+      "Config": [
+        {
+          "Name": "Contact Web API",
+          "Version": "v1",
+          "Service": {
+            "Name": "kisi",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    },
+    {
+      "Key": "rapor",
+      "Config": [
+        {
+          "Name": "Report Web Api",
+          "Version": "v1",
+          "Service": {
+            "Name": "rapor",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    }
+
+  ]
+}

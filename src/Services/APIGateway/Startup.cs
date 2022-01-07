@@ -1,18 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MMLib.Ocelot.Provider.AppConfiguration;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace APIGateway
 {
@@ -35,9 +30,10 @@ namespace APIGateway
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIGateway", Version = "v1" });
             });
 
-            services.AddOcelot();
+            services.AddOcelot(Configuration);
+            //   .AddAppConfiguration();
 
-            services.AddSwaggerForOcelot(Configuration);
+            //services.AddSwaggerForOcelot(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,14 +46,12 @@ namespace APIGateway
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIGateway v1"));
             }
 
+            //app.UseSwaggerForOcelotUI(opt =>
+            //{
+            //    opt.PathToSwaggerGenerator = "/swagger/docs";
+            //});
+
             app.UseOcelot();
-
-            app.UseSwaggerForOcelotUI(opt =>
-            {
-                opt.PathToSwaggerGenerator = "/swagger/docs";
-            });
-
-
 
             //app.UseHttpsRedirection();
 

@@ -6,14 +6,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Contact.Application.CommandsQueries.RaporTalep.Queries
+namespace Contact.Application.CommandsQueries.RaporTalep.Commands
 {
-    public class RaporTalepQuery : IRequest<Response>
+    public class RaporTalepCommand : IRequest<Response>
     {
         public string Konum { get; set; }
     }
 
-    public class GetRaporByKonumQueryHandler : IRequestHandler<RaporTalepQuery, Response>
+    public class GetRaporByKonumQueryHandler : IRequestHandler<RaporTalepCommand, Response>
     {
         private readonly IIletisimRepository _iletisimRepository;
 
@@ -22,7 +22,7 @@ namespace Contact.Application.CommandsQueries.RaporTalep.Queries
             _iletisimRepository = iletisimRepository;
         }
 
-        public async Task<Response> Handle(RaporTalepQuery request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(RaporTalepCommand request, CancellationToken cancellationToken)
         {
             var iletisimEntities = await _iletisimRepository.GetByFilter(i => i.Konum == request.Konum);
 

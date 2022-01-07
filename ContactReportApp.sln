@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Infrastructure", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "src\Services\APIGateway\APIGateway.csproj", "{56E923BE-C009-4380-900D-F8AC09C981E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.Messaging.Send", "src\Services\ReportAPI\Report.Messaging.Send\Report.Messaging.Send.csproj", "{193778D3-9AC9-470F-AB32-F346AB1E997E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{56E923BE-C009-4380-900D-F8AC09C981E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E923BE-C009-4380-900D-F8AC09C981E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E923BE-C009-4380-900D-F8AC09C981E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{193778D3-9AC9-470F-AB32-F346AB1E997E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193778D3-9AC9-470F-AB32-F346AB1E997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193778D3-9AC9-470F-AB32-F346AB1E997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193778D3-9AC9-470F-AB32-F346AB1E997E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{BB42020B-9B0A-45F3-8422-DFADE0ED1513} = {F3E760B9-3377-49A3-A664-9AE6F6C6DF52}
 		{8A883217-C524-4DE2-AAD5-C53605588E87} = {F3E760B9-3377-49A3-A664-9AE6F6C6DF52}
 		{56E923BE-C009-4380-900D-F8AC09C981E1} = {3AFD2922-8B9F-4FCC-9DFC-C7708CB523AB}
+		{193778D3-9AC9-470F-AB32-F346AB1E997E} = {F3E760B9-3377-49A3-A664-9AE6F6C6DF52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6782F961-4F13-4F0C-B68E-8B2C3F97E64D}

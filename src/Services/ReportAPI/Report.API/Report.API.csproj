@@ -9,6 +9,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
@@ -17,6 +19,7 @@
     <ProjectReference Include="..\Report.Application\Report.Application.csproj" />
     <ProjectReference Include="..\Report.Domain\Report.Domain.csproj" />
     <ProjectReference Include="..\Report.Infrastructure\Report.Infrastructure.csproj" />
+    <ProjectReference Include="..\Report.Messaging.Send\Report.Messaging.Send.csproj" />
   </ItemGroup>
 
 </Project>

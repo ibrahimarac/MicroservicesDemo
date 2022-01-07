@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CommandsQueries\RaporTalep\Commands\" />
+    <Folder Include="CommandsQueries\RaporTalep\Queries\" />
   </ItemGroup>
 
 </Project>
