@@ -1,7 +1,7 @@
 ﻿
 namespace Contact.Application.Dtos
 {
-    public class UpdateKisiDto
+    public class KisiCreateDto
     {
         public string Ad { get; set; }
         public string Soyad { get; set; }

@@ -14,7 +14,7 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
     public class UpdateKisiCommand : IRequest<Response>
     {
         public Guid Id { get; set; }
-        public UpdateKisiDto Kisi { get; set; }
+        public KisiUpdateDto Kisi { get; set; }
     }
 
     public class UpdateKisiCommandHandler : IRequestHandler<UpdateKisiCommand, Response>

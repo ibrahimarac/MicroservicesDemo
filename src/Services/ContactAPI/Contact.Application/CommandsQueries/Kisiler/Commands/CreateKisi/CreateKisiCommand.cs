@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
 using Karatekin.Web.Api.Core.Utilities.Result;
@@ -29,7 +30,11 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.CreateKisi
 
         public async Task<Response> Handle(CreateKisiCommand request, CancellationToken cancellationToken)
         {
-            var kisiEntity = _mapper.Map<CreateKisiCommand, Kisi>(request);
+            var kisiDto = _mapper.Map<CreateKisiCommand, KisiCreateDto>(request);
+
+            var kisiEntity = _mapper.Map<KisiCreateDto, Kisi>(kisiDto);
+            kisiEntity.Id = Guid.NewGuid();
+
             await _kisiRepository.Add(kisiEntity);
             return new SuccessDataResponse<Guid>(kisiEntity.Id);
         }

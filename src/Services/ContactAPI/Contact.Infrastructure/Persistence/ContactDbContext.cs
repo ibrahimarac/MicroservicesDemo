@@ -28,26 +28,31 @@ namespace Contact.Infrastructure.Persistence
             modelBuilder.SeedIletisim();
         }
 
-        
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess=true, CancellationToken cancellationToken = default)
         {
-            foreach (var entry in ChangeTracker.Entries<IAuditable>())
-            {
-                if(entry.Entity is IAuditable)
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreateDate=DateTime.Now;
-                        break;
+            int result = 0;
 
-                    case EntityState.Modified:
-                            entry.Entity.LastupDate = DateTime.Now;
-                        break;
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.Entity is IAuditable)
+                {
+                    var auditableEntity = entry.Entity as IAuditable;
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            auditableEntity.CreateDate = DateTime.Now;
+                            break;
+
+                        case EntityState.Modified:
+                            auditableEntity.LastupDate = DateTime.Now;
+                            break;
+                    }
                 }
             }
 
-            int result = await base.SaveChangesAsync(cancellationToken);
+            if (!cancellationToken.IsCancellationRequested)
+                await Task.FromResult(base.SaveChanges());
 
             return result;
         }

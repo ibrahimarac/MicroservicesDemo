@@ -14,19 +14,19 @@ namespace Contact.API.Controllers
 {
     [Route("api/rapor")]
     [ApiController]
-    public class RaporTalepController : ControllerBase
+    public class RaporController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public RaporTalepController(IMapper mapper,IMediator mediator)
+        public RaporController(IMapper mapper,IMediator mediator)
         {
             _mapper = mapper;
             _mediator = mediator;
         }
 
         [HttpGet]
-        [Route("create/{konum}")]
+        [Route("get-by-konum/{konum}")]
         public async Task<IActionResult> GetByKonum(string konum)
         {
             var query = new RaporTalepQuery();

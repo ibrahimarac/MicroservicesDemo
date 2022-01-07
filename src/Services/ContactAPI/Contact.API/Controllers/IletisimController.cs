@@ -46,7 +46,7 @@ namespace Contact.API.Controllers
 
         [HttpGet]
         [Route("get/{id}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var query = new GetRaporByIdQuery { Id = id};
             var result = await _mediator.Send(query);

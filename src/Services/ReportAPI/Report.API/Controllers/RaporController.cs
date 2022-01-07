@@ -37,7 +37,7 @@ namespace Report.API.Controllers
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] RaporUpdateDto rapor)
+        public async Task<IActionResult> Update(Guid id, RaporUpdateDto rapor)
         {
             var command = new UpdateRaporCommand { Id = id, Rapor = rapor };
             var result = await _mediator.Send(command);

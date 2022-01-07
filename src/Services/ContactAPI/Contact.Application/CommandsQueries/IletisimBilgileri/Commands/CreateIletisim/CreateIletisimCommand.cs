@@ -31,6 +31,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateI
         public async Task<Response> Handle(CreateIletisimCommand request, CancellationToken cancellationToken)
         {
             var entity=_mapper.Map<CreateIletisimCommand, Iletisim>(request);
+            entity.Id = Guid.NewGuid();
             await _iletisimRepository.Add(entity);
             return new SuccessDataResponse<Guid>(entity.Id);
         }

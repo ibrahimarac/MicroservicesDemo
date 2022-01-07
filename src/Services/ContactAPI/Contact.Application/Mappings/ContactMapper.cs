@@ -12,14 +12,15 @@ namespace Contact.Application.Mappings
         public ContactMapper()
         {            
             CreateMap<Kisi, KisiDto>().ReverseMap();
-            CreateMap<UpdateKisiDto, Kisi>();
+            CreateMap<KisiUpdateDto, Kisi>().ReverseMap();
+            CreateMap<KisiCreateDto, Kisi>().ReverseMap();
             CreateMap<Kisi, KisiVeIletisimDto>()
                 .ForMember(dto=>dto.IletisimBilgileri,m=>m.MapFrom(entity=>entity.IletisimBilgileri));
-            CreateMap<CreateKisiCommand, Kisi>().ReverseMap();
-            CreateMap<UpdateKisiCommand, Kisi>().ReverseMap();
+            CreateMap<CreateKisiCommand, KisiCreateDto>().ReverseMap();
+            CreateMap<UpdateKisiCommand, KisiUpdateDto>().ReverseMap();
 
             CreateMap<Iletisim, IletisimDto>().ReverseMap();
-            CreateMap<IletisimDto, CreateIletisimCommand>().ReverseMap();
+            CreateMap<Iletisim, CreateIletisimCommand>().ReverseMap();
         }
     }
 }

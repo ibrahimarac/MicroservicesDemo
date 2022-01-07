@@ -27,9 +27,9 @@ namespace Contact.API.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create(KisiDto kisi)
+        public async Task<IActionResult> Create(KisiCreateDto kisi)
         {
-            var command=_mapper.Map<KisiDto, CreateKisiCommand>(kisi);
+            var command=_mapper.Map<KisiCreateDto, CreateKisiCommand>(kisi);
             var result = await _mediator.Send(command);
             return result.Success ? Ok(result) : BadRequest(result);
         }
@@ -45,7 +45,7 @@ namespace Contact.API.Controllers
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update([FromRoute]Guid id,[FromBody]UpdateKisiDto kisi)
+        public async Task<IActionResult> Update(Guid id,KisiUpdateDto kisi)
         {
             var command = new UpdateKisiCommand { Id = id,Kisi=kisi };
             var result = await _mediator.Send(command);
@@ -54,7 +54,7 @@ namespace Contact.API.Controllers
 
         [HttpGet]
         [Route("get/{id}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var query = new KisiDetayQuery { Id = id};
             var result = await _mediator.Send(query);

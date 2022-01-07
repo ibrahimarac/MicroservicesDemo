@@ -1,0 +1,221 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/iletisim/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/iletisim/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/iletisim/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/iletisim/delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/iletisim/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/iletisim/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/kisi/create",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/kisi/delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/kisi/update/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/kisi/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/get",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/kisi/get",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor/update/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/detail/get",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor/detail/get",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/detail/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor/detail/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor-durum/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor-durum/delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/rapor-durum/update/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "contacts",
+      "Config": [
+        {
+          "Name": "Contacts API",
+          "Version": "v1",
+          "Url": "http://localhost:60000/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "reports",
+      "Config": [
+        {
+          "Name": "Reports API",
+          "Version": "v1",
+          "Url": "http://localhost:50000/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:30000"
+  }
+}
