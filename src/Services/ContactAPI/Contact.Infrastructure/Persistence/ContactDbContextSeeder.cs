@@ -1,6 +1,4 @@
-﻿
-using ContactReport.Domain.Contacts;
-using ContactReport.Domain.Entities.Contacts;
+﻿using Contact.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -56,4 +54,4 @@ namespace Contact.Infrastructure.Persistence
 
     }
 }
-}
+

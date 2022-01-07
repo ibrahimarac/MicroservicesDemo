@@ -9,11 +9,11 @@ namespace Report.Infrastructure
 {
     public static class ServiceRegistiration
     {
-        public static void AddPersistenceServices(this IServiceCollection services)
+        public static void AddRaporPersistenceServices(this IServiceCollection services)
         {
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ReportDbContext>(
-                    opt => opt.UseNpgsql("User ID=posgres; Password=password; Server=localhost;Port=5432;Database=RaporDB;Integrated Security=true;Pooling=true")
+                    opt => opt.UseNpgsql("User ID=posgres; Password=123456; Server=localhost;Port=5432;Database=RaporDB;Integrated Security=true;Pooling=true")
                 );
 
             services.AddTransient<IExcelFileBuilder, ExcelFileBuilder>();

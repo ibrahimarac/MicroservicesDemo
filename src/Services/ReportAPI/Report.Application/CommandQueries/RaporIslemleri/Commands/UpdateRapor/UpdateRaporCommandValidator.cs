@@ -10,7 +10,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
             RuleFor(v => v.Id)
                 .NotEmpty().WithMessage("Rapor kimlik numarası gerekli bir alandır.");
 
-            RuleFor(v => v.DurumId)
+            RuleFor(v => v.Rapor.DurumId)
                 .NotEmpty().WithMessage("Rapor durumu gerekli bir alandır.");
         }
     }

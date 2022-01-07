@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Contact.Infrastructure
+namespace Report.Application
 {
     public static class ServiceRegistiration
     {
-        public static void AddContactApplicationServices(this IServiceCollection services)
+        public static void AddRaporApplicationServices(this IServiceCollection services)
         {
             
         }
