@@ -10,6 +10,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor;
 using Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor;
+using Report.Application.Interfaces.Common;
 using Report.Messaging.Send.Options;
 using RestSharp;
 using System;
@@ -19,6 +20,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace Report.Messaging.Send.Receiver
 {
     public class ReportRequestReceiver : BackgroundService
@@ -26,16 +28,20 @@ namespace Report.Messaging.Send.Receiver
         private IModel _channel;
         private IConnection _connection;
         IServiceScopeFactory _serviceFactory;
-        IHostEnvironment _environment;
+        private readonly IExcelFileBuilder _excelBuilder;
         private readonly string _hostname;
         private readonly string _queueName;
         private readonly string _username;
         private readonly string _password;
 
-        public ReportRequestReceiver( IOptions<RabbitMqConfiguration> rabbitMqOptions,IHostEnvironment environment,IServiceScopeFactory serviceFactory)
+        public ReportRequestReceiver( 
+            IOptions<RabbitMqConfiguration> rabbitMqOptions,
+            IServiceScopeFactory serviceFactory,
+            IExcelFileBuilder excelBuilder
+        )
         {
-            _environment = environment;
             _serviceFactory = serviceFactory;
+            _excelBuilder = excelBuilder;
             _hostname = rabbitMqOptions.Value.Hostname;
             _queueName = rabbitMqOptions.Value.QueueName;
             _username = rabbitMqOptions.Value.UserName;
@@ -63,12 +69,12 @@ namespace Report.Messaging.Send.Receiver
             stoppingToken.ThrowIfCancellationRequested();
 
             var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received +=  (ch, ea) =>
+            consumer.Received +=  async(ch, ea) =>
             {
                 //konum bilgisini alalım
                 var konum = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                HandleMessageAsync(konum);
+                await HandleMessageAsync(konum);
 
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
@@ -82,7 +88,7 @@ namespace Report.Messaging.Send.Receiver
             await Task.CompletedTask;
         }
 
-        private async void HandleMessageAsync(string konum)
+        private async Task HandleMessageAsync(string konum)
         {
             var scope = _serviceFactory.CreateScope();
 
@@ -106,11 +112,10 @@ namespace Report.Messaging.Send.Receiver
                 if (raporBilgileriResponse != null)
                 {
                     //Excel dosyasına verileri yaz.
-                    string path=await CreateExcelFileAsync(raporId,raporBilgileriResponse);
+                    string path=await _excelBuilder.CreateExcelFileAsync(raporId,raporBilgileriResponse);
 
                     await UpdateReportStatus(raporId, path);
                 }
-
             }
         }
 
@@ -164,6 +169,7 @@ namespace Report.Messaging.Send.Receiver
         {
             return await Task.Run(() =>
             {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (ExcelPackage excel = new ExcelPackage())
                 {
                     excel.Workbook.Worksheets.Add("Worksheet1");
@@ -176,16 +182,16 @@ namespace Report.Messaging.Send.Receiver
                         new string[]{rapor.Konum,rapor.KisiSayisi.ToString(),rapor.TelnoSayisi.ToString()}
                       };
 
-                    // Determine the header range (e.g. A1:D1)
+                    // Değerlerin yazılacağı hücre aralığı
                     string headerRange = "A1:C1";
 
-                    // Target a worksheet
+                    // Hedef çalışma sayfası
                     var worksheet = excel.Workbook.Worksheets["Worksheet1"];
 
-                    // Popular header row data
+                    // Verileri ilgili hücrelere yansıt.
                     worksheet.Cells[headerRange].LoadFromArrays(headerRow);
 
-                    var filePath = Path.Combine(_environment.ContentRootPath, $"{raporId}.xlsx");
+                    var filePath = Path.Combine(_environment.ContentRootPath,"files", $"{raporId}.xlsx");
 
                     FileInfo excelFile = new FileInfo(filePath);
                     excel.SaveAs(excelFile);

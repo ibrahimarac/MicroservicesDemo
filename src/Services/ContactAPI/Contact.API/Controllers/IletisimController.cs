@@ -4,6 +4,7 @@ using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.DeleteIleti
 using Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIletisimById;
 using Contact.Application.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

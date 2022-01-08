@@ -12,6 +12,7 @@ namespace Report.Domain.Common
         public BaseEntity()
         {
             CreateDate = DateTime.Now;
+            LastupDate = DateTime.Now;
         }
     }
 }

@@ -1,22 +1,18 @@
 using Core.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Report.Application;
 using Report.Infrastructure;
 using Report.Messaging.Send;
 using Report.Messaging.Send.Options;
 using Report.Messaging.Send.Receiver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Report.API
 {
@@ -60,6 +56,13 @@ namespace Report.API
             }
 
             //app.UseHttpsRedirection();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), @"files")),
+                        RequestPath = new PathString("/files")
+            });
 
             app.UseRouting();
 
