@@ -39,10 +39,10 @@ namespace Report.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Report.API", Version = "v1" });
             });
 
-            services.AddRaporPersistenceServices();
-            services.AddRaporApplicationServices();
             services.AddCoreServices();
+            services.AddRaporPersistenceServices();
             services.AddRaporRequestBackgroundServices();
+            services.AddRaporApplicationServices();
 
             services.Configure<RabbitMqConfiguration>(Configuration.GetSection("RabbitMq"));
 

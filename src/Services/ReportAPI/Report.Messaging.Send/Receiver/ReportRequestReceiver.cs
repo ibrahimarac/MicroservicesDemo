@@ -1,6 +1,7 @@
 ﻿using Core.Application.Models;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -24,17 +25,17 @@ namespace Report.Messaging.Send.Receiver
     {
         private IModel _channel;
         private IConnection _connection;
-        IMediator _mediator;
+        IServiceScopeFactory _serviceFactory;
         IHostEnvironment _environment;
         private readonly string _hostname;
         private readonly string _queueName;
         private readonly string _username;
         private readonly string _password;
 
-        public ReportRequestReceiver( IOptions<RabbitMqConfiguration> rabbitMqOptions,IMediator mediator,IHostEnvironment environment)
+        public ReportRequestReceiver( IOptions<RabbitMqConfiguration> rabbitMqOptions,IHostEnvironment environment,IServiceScopeFactory serviceFactory)
         {
-            _mediator = mediator;
             _environment = environment;
+            _serviceFactory = serviceFactory;
             _hostname = rabbitMqOptions.Value.Hostname;
             _queueName = rabbitMqOptions.Value.QueueName;
             _username = rabbitMqOptions.Value.UserName;
@@ -62,12 +63,12 @@ namespace Report.Messaging.Send.Receiver
             stoppingToken.ThrowIfCancellationRequested();
 
             var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += async (ch, ea) =>
+            consumer.Received +=  (ch, ea) =>
             {
                 //konum bilgisini alalım
                 var konum = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                await HandleMessageAsync(konum);
+                HandleMessageAsync(konum);
 
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
@@ -81,10 +82,14 @@ namespace Report.Messaging.Send.Receiver
             await Task.CompletedTask;
         }
 
-        private async Task HandleMessageAsync(string konum)
+        private async void HandleMessageAsync(string konum)
         {
+            var scope = _serviceFactory.CreateScope();
+
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
             //Öncelikle raporu veritabanında rapor tablosuna kaydedelim.
-            var addRaporToDbResponse= await _mediator.Send(new CreateRaporCommand());
+            var addRaporToDbResponse= await mediator.Send(new CreateRaporCommand());
             //rapor başarıyla veritabanına kaydedilmişse
             if(addRaporToDbResponse.Success)
             {
@@ -109,10 +114,15 @@ namespace Report.Messaging.Send.Receiver
             }
         }
 
+
         private async Task<Response> UpdateReportStatus(Guid raporId,string path)
         {
+            var scope = _serviceFactory.CreateScope();
+
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
             //sonrasında ilgili raporun durumunu güncelle.
-            return await _mediator.Send(new UpdateRaporCommand
+            return await mediator.Send(new UpdateRaporCommand
                             {
                                 Id = raporId,
                                 Rapor = new Application.Dtos.RaporUpdateDto
@@ -135,12 +145,12 @@ namespace Report.Messaging.Send.Receiver
             request.Timeout = -1;
             request.Method = Method.Get;
             var response = await client.ExecuteAsync(request);
-            var responseResult = JsonConvert.DeserializeObject<Response>(response.Content);
+            var responseResult = JsonConvert.DeserializeObject<DataResponse<RaporTalep>>(response.Content);
 
             if (responseResult.Success)
             {
                 //Buradan donem veri RaporTalep türündendir.
-                var raporTalepResponse = JsonConvert.DeserializeObject<SuccessDataResponse<RaporTalep>>(response.Content);
+                var raporTalepResponse = JsonConvert.DeserializeObject<DataResponse<RaporTalep>>(response.Content);
                 //Rapor içeriği RaporTalep türünden geldi.
                 var raporBilgileri = raporTalepResponse.Data;
                 return raporBilgileri;

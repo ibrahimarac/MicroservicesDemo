@@ -32,7 +32,7 @@ namespace Contact.Application.CommandsQueries.RaporRequest.Commands
                 Konum = request.Konum,
                 KisiSayisi=iletisimEntities.Select(i=>i.KisiId).Distinct().Count()
             };
-            return new SuccessDataResponse<RaporTalep>(rapor);
+            return new DataResponse<RaporTalep>(rapor,true,"");
         }
     }
 

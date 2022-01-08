@@ -26,10 +26,9 @@ namespace Report.API.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create(RaporDurumDto raporDurum)
+        public async Task<IActionResult> Create(RaporDurumCreateDto raporDurum)
         {
-            var command = _mapper.Map<RaporDurumDto, CreateRaporDurumCommand>(raporDurum);
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(new CreateRaporDurumCommand { Durum=raporDurum});
             return result.Success ? Ok(result) : BadRequest(result);
         }
 

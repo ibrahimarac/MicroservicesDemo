@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
+using Newtonsoft.Json;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
@@ -12,7 +13,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.CreateR
 {
     public class CreateRaporDurumCommand:IRequest<Response>
     {
-        public string Durum { get; set; }
+        public RaporDurumCreateDto Durum { get; set; }
     }
 
     public class CreateRaporDurumCommandHandler : IRequestHandler<CreateRaporDurumCommand, Response>
@@ -27,11 +28,10 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.CreateR
         }
         public async Task<Response> Handle(CreateRaporDurumCommand request, CancellationToken cancellationToken)
         {
-            var raporDurumEntity = _mapper.Map<CreateRaporDurumCommand, RaporDurum>(request);
+            var raporDurumEntity = new RaporDurum { Durum = request.Durum.RaporDurum };
             raporDurumEntity.Id = Guid.NewGuid();
             await _raporDurumRepository.Add(raporDurumEntity);
-            var raporDurumDto = _mapper.Map<RaporDurum, RaporDurumDto>(raporDurumEntity);
-            return new SuccessDataResponse<RaporDurumDto>(raporDurumDto);
+            return new DataResponse<Guid>(raporDurumEntity.Id,true,"");
         }
     }
 }

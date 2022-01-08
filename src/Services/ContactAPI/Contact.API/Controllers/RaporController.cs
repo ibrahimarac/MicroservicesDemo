@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Contact.Application.CommandsQueries.RaporRequest.Commands;
+using Core.Application.Models;
+using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

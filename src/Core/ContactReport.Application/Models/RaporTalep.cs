@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.Serialization;
+
 namespace Core.Application.Models
 {
     public class RaporTalep

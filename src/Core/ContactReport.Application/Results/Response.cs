@@ -1,6 +1,8 @@
 ﻿
 
 
+using Newtonsoft.Json;
+
 namespace Karatekin.Web.Api.Core.Utilities.Result
 {
     public class Response
@@ -10,13 +12,21 @@ namespace Karatekin.Web.Api.Core.Utilities.Result
             Message = message;
         }
 
+        [JsonConstructor]
         public Response(bool success)
         {
             Success = success;
         }
 
+        public Response()
+        {
+
+        }
+
+        [JsonProperty]
         public bool Success { get; }
 
+        [JsonProperty]
         public string Message { get; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1D7nqho1orPexBHfghPPUSitaar33GeGoc/y65iG7pnmuvLG9aAkM6yfFEzo1U7p9LNiY4U5Dw5D7g6JvaybEA==",
+  "dgSpecHash": "Oc2FsAU68vaKG+uYJLZ+iaqvMo91R8gZN8kP0hugff8jXdOBn56T5lfOHcVfPo/km3A5OYlAyNM5d0sWfOe9VA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ibrahim\\Desktop\\ContactReport\\ContactReportApp\\src\\Core\\ContactReport.Application\\Core.Application.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,8 @@
     "C:\\Users\\Ibrahim\\.nuget\\packages\\mediatr\\10.0.0\\mediatr.10.0.0.nupkg.sha512",
     "C:\\Users\\Ibrahim\\.nuget\\packages\\mediatr.contracts\\1.0.0\\mediatr.contracts.1.0.0.nupkg.sha512",
     "C:\\Users\\Ibrahim\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\Ibrahim\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512"
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Ibrahim\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
