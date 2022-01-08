@@ -11,7 +11,8 @@
         }
       ],
       "UpstreamPathTemplate": "/kisi/create",
-      "UpstreamHttpMethod": [ "Post" ]
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/kisi/delete/{id}",
@@ -24,7 +25,7 @@
       ],
       "UpstreamPathTemplate": "/kisi/delete/{id}",
       "UpstreamHttpMethod": [ "Get" ],
-      "SwaggerKey": "contacts"
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/kisi/update/{id}",
@@ -37,7 +38,7 @@
       ],
       "UpstreamPathTemplate": "/kisi/update/{id}",
       "UpstreamHttpMethod": [ "Put" ],
-      "SwaggerKey": "contacts"
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/kisi/get/{id}",
@@ -50,7 +51,7 @@
       ],
       "UpstreamPathTemplate": "/kisi/get/{id}",
       "UpstreamHttpMethod": [ "Get" ],
-      "SwaggerKey": "contacts"
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/kisi/get",
@@ -63,7 +64,7 @@
       ],
       "UpstreamPathTemplate": "/kisi/get",
       "UpstreamHttpMethod": [ "Get" ],
-      "SwaggerKey": "contacts"
+      "SwaggerKey": "contact"
     },
     //ContactAPI-Iletisim ile ilgili yönlendirmeler
     {
@@ -77,7 +78,7 @@
       ],
       "UpstreamPathTemplate": "/iletisim/create",
       "UpstreamHttpMethod": [ "Post" ],
-      "SwaggerKey": "contacts"
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/iletisim/delete/{id}",
@@ -89,7 +90,8 @@
         }
       ],
       "UpstreamPathTemplate": "/iletisim/delete/{id}",
-      "UpstreamHttpMethod": [ "Delete" ]
+      "UpstreamHttpMethod": [ "Delete" ],
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/iletisim/get/{id}",
@@ -101,7 +103,8 @@
         }
       ],
       "UpstreamPathTemplate": "/iletisim/get/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "contact"
     },
     {
       "DownstreamPathTemplate": "/api/iletisim/get-by-konum/{konum}",
@@ -113,7 +116,8 @@
         }
       ],
       "UpstreamPathTemplate": "/iletisim/get-by-konum/{konum}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "contact"
     },
     //ReportAPI-RaporDurum ile ilgili yönlendirmeler
     {
@@ -126,7 +130,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor-durum/create",
-      "UpstreamHttpMethod": [ "Post" ]
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor-durum/delete/{id}",
@@ -138,7 +143,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor-durum/delete/{id}",
-      "UpstreamHttpMethod": [ "Delete" ]
+      "UpstreamHttpMethod": [ "Delete" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor-durum/update/{id}",
@@ -150,7 +156,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor-durum/update/{id}",
-      "UpstreamHttpMethod": [ "Put" ]
+      "UpstreamHttpMethod": [ "Put" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor-durum/get",
@@ -162,7 +169,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor-durum/get",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "report"
     },
     //ReportAPI.Rapor ile ilgili yönlendirmeler
     {
@@ -175,7 +183,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor/create",
-      "UpstreamHttpMethod": [ "Post" ]
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor/update/{id}",
@@ -187,7 +196,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor/update/{id}",
-      "UpstreamHttpMethod": [ "Put" ]
+      "UpstreamHttpMethod": [ "Put" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor/detail/get",
@@ -199,7 +209,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor/detay/get",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor/detail/get/{id}",
@@ -211,7 +222,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor/detay/get/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "report"
     },
     {
       "DownstreamPathTemplate": "/api/rapor/get/{id}",
@@ -223,7 +235,8 @@
         }
       ],
       "UpstreamPathTemplate": "/rapor/get/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "report"
     },
     //Belge talepleri ile ilgili yönlendirmeler burada yapýlacak
     {
@@ -236,18 +249,16 @@
         }
       ],
       "UpstreamPathTemplate": "/talep/rapor/get-by-konum/{konum}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "report"
     }
   ],
-  "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:30000"
-  },
   "SwaggerEndPoints": [
     {
       "Key": "contact",
       "Config": [
         {
-          "Name": "Kiþi API",
+          "Name": "Contact API",
           "Version": "v1",
           "Url": "http://localhost:60000/swagger/v1/swagger.json"
         }
@@ -257,11 +268,14 @@
       "Key": "report",
       "Config": [
         {
-          "Name": "Kiþi API",
+          "Name": "Report API",
           "Version": "v1",
-          "Url": "http://localhost:60000/swagger/v1/swagger.json"
+          "Url": "http://localhost:50000/swagger/v1/swagger.json"
         }
       ]
     }
-  ]
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:30000"
+  }
 }

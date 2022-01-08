@@ -29,7 +29,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaports
 
         public async Task<Response> Handle(GetRaportsQuery request, CancellationToken cancellationToken)
         {
-            var raporDetayEntities = await _raporRepository.GetAll();
+            var raporDetayEntities = await _raporRepository.GetRaporlarWithRaporDurumlar();
 
             var raporDetayDtos = _mapper.Map<IEnumerable<Rapor>, IEnumerable<RaporDetayDto>>(raporDetayEntities);
             return new DataResponse<IEnumerable<RaporDetayDto>>(raporDetayDtos,true);

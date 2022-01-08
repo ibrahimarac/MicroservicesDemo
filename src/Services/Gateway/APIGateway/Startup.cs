@@ -26,12 +26,8 @@ namespace APIGateway
 
             services.AddControllers();
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Gateway", Version = "v1" });
-            //});
-
-            services.AddOcelot(Configuration);
+            services.AddOcelot(Configuration)
+               .AddAppConfiguration();
 
             services.AddSwaggerForOcelot(Configuration);
         }
@@ -42,13 +38,12 @@ namespace APIGateway
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIGateway v1"));
             }
 
             app.UseSwaggerForOcelotUI(opt =>
             {
                 opt.PathToSwaggerGenerator = "/swagger/docs";
+
             });
 
             await app.UseOcelot();

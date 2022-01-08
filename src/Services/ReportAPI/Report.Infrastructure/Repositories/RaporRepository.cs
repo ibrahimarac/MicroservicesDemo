@@ -4,6 +4,7 @@ using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
 using Report.Infrastructure.Persistence;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Contact.Infrastructure.Repositories
@@ -19,7 +20,15 @@ namespace Contact.Infrastructure.Repositories
         {
             var context = Context as ReportDbContext;
             return await context.Raporlar.Include(r => r.RaporDurum)
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync(r=>r.Id==id);
         }
+
+        public async Task<IEnumerable<Rapor>> GetRaporlarWithRaporDurumlar()
+        {
+            var context = Context as ReportDbContext;
+            return await context.Raporlar.Include(r => r.RaporDurum)
+                .ToListAsync();
+        }
+
     }
 }
