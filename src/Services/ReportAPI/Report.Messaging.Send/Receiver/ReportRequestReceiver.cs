@@ -1,8 +1,19 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Core.Application.Models;
+using Karatekin.Web.Api.Core.Utilities.Result;
+using MediatR;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using OfficeOpenXml;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor;
+using Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor;
 using Report.Messaging.Send.Options;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,13 +24,17 @@ namespace Report.Messaging.Send.Receiver
     {
         private IModel _channel;
         private IConnection _connection;
+        IMediator _mediator;
+        IHostEnvironment _environment;
         private readonly string _hostname;
         private readonly string _queueName;
         private readonly string _username;
         private readonly string _password;
 
-        public ReportRequestReceiver( IOptions<RabbitMqConfiguration> rabbitMqOptions)
+        public ReportRequestReceiver( IOptions<RabbitMqConfiguration> rabbitMqOptions,IMediator mediator,IHostEnvironment environment)
         {
+            _mediator = mediator;
+            _environment = environment;
             _hostname = rabbitMqOptions.Value.Hostname;
             _queueName = rabbitMqOptions.Value.QueueName;
             _username = rabbitMqOptions.Value.UserName;
@@ -42,17 +57,17 @@ namespace Report.Messaging.Send.Receiver
             _channel.QueueDeclare(queue: _queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             stoppingToken.ThrowIfCancellationRequested();
 
             var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += (ch, ea) =>
+            consumer.Received += async (ch, ea) =>
             {
                 //konum bilgisini alalım
                 var konum = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                HandleMessage(konum);
+                await HandleMessageAsync(konum);
 
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
@@ -63,17 +78,114 @@ namespace Report.Messaging.Send.Receiver
 
             _channel.BasicConsume(_queueName, false, consumer);
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
-        private void HandleMessage(string konum)
+        private async Task HandleMessageAsync(string konum)
+        {
+            //Öncelikle raporu veritabanında rapor tablosuna kaydedelim.
+            var addRaporToDbResponse= await _mediator.Send(new CreateRaporCommand());
+            //rapor başarıyla veritabanına kaydedilmişse
+            if(addRaporToDbResponse.Success)
+            {
+                //rapora verilen id değerini öğrenelim.
+                //bu değeri rapor durumunu değiştirmek için kullanacağız.
+                var raporId = (addRaporToDbResponse as SuccessDataResponse<Guid>).Data;
+
+                var raporBilgileriResponse = await CollectReportInfoAsync(konum);
+
+                //Olayı simule etmek amacıyla gecikme verelim.
+                await Task.Delay(10000);
+
+                //rapor bilgileri başarıyla alındı.
+                if (raporBilgileriResponse != null)
+                {
+                    //Excel dosyasına verileri yaz.
+                    string path=await CreateExcelFileAsync(raporId,raporBilgileriResponse);
+
+                    await UpdateReportStatus(raporId, path);
+                }
+
+            }
+        }
+
+        private async Task<Response> UpdateReportStatus(Guid raporId,string path)
+        {
+            //sonrasında ilgili raporun durumunu güncelle.
+            return await _mediator.Send(new UpdateRaporCommand
+                            {
+                                Id = raporId,
+                                Rapor = new Application.Dtos.RaporUpdateDto
+                                {
+                                    DurumId = new Guid("2143a48a-7190-4ee0-a894-743733ac09b9"),
+                                    Path = path
+                                }
+                            });
+        }
+
+
+
+        private async Task<RaporTalep> CollectReportInfoAsync(string konum)
         {
             //Bu konum bilgisine ait raporun talep edildiği bilgisi Contact api'ye gönderilerek
             //rapora ait datalar alınıyor.
 
+            var client = new RestClient($"http://localhost:60000/api/rapor/get-by-konum/{konum}");
+            var request = new RestRequest();
+            request.Timeout = -1;
+            request.Method = Method.Get;
+            var response = await client.ExecuteAsync(request);
+            var responseResult = JsonConvert.DeserializeObject<Response>(response.Content);
 
+            if (responseResult.Success)
+            {
+                //Buradan donem veri RaporTalep türündendir.
+                var raporTalepResponse = JsonConvert.DeserializeObject<SuccessDataResponse<RaporTalep>>(response.Content);
+                //Rapor içeriği RaporTalep türünden geldi.
+                var raporBilgileri = raporTalepResponse.Data;
+                return raporBilgileri;
+            }
+            return null;
+        }
+
+
+
+        private async Task<string> CreateExcelFileAsync(Guid raporId,RaporTalep rapor)
+        {
+            return await Task.Run(() =>
+            {
+                using (ExcelPackage excel = new ExcelPackage())
+                {
+                    excel.Workbook.Worksheets.Add("Worksheet1");
+                    excel.Workbook.Worksheets.Add("Worksheet2");
+                    excel.Workbook.Worksheets.Add("Worksheet3");
+
+                    var headerRow = new List<string[]>()
+                      {
+                        new string[] { "Konum", "Kişi Sayısı", "Telno Sayısı" },
+                        new string[]{rapor.Konum,rapor.KisiSayisi.ToString(),rapor.TelnoSayisi.ToString()}
+                      };
+
+                    // Determine the header range (e.g. A1:D1)
+                    string headerRange = "A1:C1";
+
+                    // Target a worksheet
+                    var worksheet = excel.Workbook.Worksheets["Worksheet1"];
+
+                    // Popular header row data
+                    worksheet.Cells[headerRange].LoadFromArrays(headerRow);
+
+                    var filePath = Path.Combine(_environment.ContentRootPath, $"{raporId}.xlsx");
+
+                    FileInfo excelFile = new FileInfo(filePath);
+                    excel.SaveAs(excelFile);
+                    return filePath;
+                }
+            });
             
         }
+
+
 
         private void OnConsumerConsumerCancelled(object sender, ConsumerEventArgs e)
         {

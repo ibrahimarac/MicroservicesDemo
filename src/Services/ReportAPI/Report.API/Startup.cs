@@ -10,7 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Report.Application;
 using Report.Infrastructure;
+using Report.Messaging.Send;
 using Report.Messaging.Send.Options;
+using Report.Messaging.Send.Receiver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,8 +42,11 @@ namespace Report.API
             services.AddRaporPersistenceServices();
             services.AddRaporApplicationServices();
             services.AddCoreServices();
+            services.AddRaporRequestBackgroundServices();
 
             services.Configure<RabbitMqConfiguration>(Configuration.GetSection("RabbitMq"));
+
+            services.AddHostedService<ReportRequestReceiver>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

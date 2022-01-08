@@ -2,9 +2,7 @@
 using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateIletisim;
 using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.DeleteIletisim;
 using Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIletisimById;
-using Contact.Application.CommandsQueries.RaporTalep.Queries;
 using Contact.Application.Dtos;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;

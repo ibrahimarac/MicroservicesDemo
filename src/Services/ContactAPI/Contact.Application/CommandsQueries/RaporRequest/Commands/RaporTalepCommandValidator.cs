@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Contact.Application.CommandsQueries.RaporTalep.Commands
+namespace Contact.Application.CommandsQueries.RaporRequest.Commands
 {
     public class RaporTalepCommandValidator : AbstractValidator<RaporTalepCommand>
     {

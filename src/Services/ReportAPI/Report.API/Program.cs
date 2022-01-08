@@ -20,6 +20,7 @@ namespace Report.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseWebRoot("files");
                     webBuilder.UseStartup<Startup>();
                 });
     }

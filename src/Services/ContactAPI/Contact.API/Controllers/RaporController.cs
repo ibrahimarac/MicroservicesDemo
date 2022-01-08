@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Contact.Application.CommandsQueries.RaporTalep.Commands;
+using Contact.Application.CommandsQueries.RaporRequest.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
