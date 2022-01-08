@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor;

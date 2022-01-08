@@ -1,5 +1,5 @@
 ﻿
-using Core.Application.Models;
+using Assesment.Core.Models;
 using System;
 using System.Threading.Tasks;
 

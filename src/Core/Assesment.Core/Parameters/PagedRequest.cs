@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ContactReport.Application.Parameters
+namespace Assesment.Core.Parameters
 {
     public class PagedRequest<T> where T : class
     {

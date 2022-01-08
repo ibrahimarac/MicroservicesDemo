@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ContactReport.Application.Common.Exceptions
+namespace Assesment.Core.Exceptions
 {
     public class ValidationException : Exception
     {

@@ -1,5 +1,5 @@
-﻿using ContactReport.Application.Common.Exceptions;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Exceptions;
+using Assesment.Core.Results;
 using MediatR;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
@@ -32,7 +32,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
             if(entity==null)
             {
                 var exception = new NotFoundException(nameof(Rapor), request.Id);
-                var response = new ErrorDataResponse<NotFoundException>(exception);
+                var response = new DataResponse<NotFoundException>(exception,false);
                 return response;
             }
             //rapor bilgileri güncelleniyor

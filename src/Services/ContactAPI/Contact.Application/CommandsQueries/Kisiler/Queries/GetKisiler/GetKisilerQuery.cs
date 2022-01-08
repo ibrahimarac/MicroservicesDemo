@@ -1,10 +1,9 @@
-﻿using AutoMapper;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +30,7 @@ namespace Contact.Application.CommandsQueries.Kisiler.Queries.GetKisiler
         {
             var kisiler =await _kisiRepository.GetAll();
             var kisilerDto = _mapper.Map<IEnumerable<Kisi>, IEnumerable<KisiDto>>(kisiler);
-            return new SuccessDataResponse<IEnumerable<KisiDto>>(kisilerDto);
+            return new DataResponse<IEnumerable<KisiDto>>(kisilerDto,true);
         }
     }
 }

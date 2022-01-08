@@ -1,6 +1,5 @@
-﻿using AutoMapper;
-using ContactReport.Application.Common.Exceptions;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
@@ -33,7 +32,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaports
             var raporDetayEntities = await _raporRepository.GetAll();
 
             var raporDetayDtos = _mapper.Map<IEnumerable<Rapor>, IEnumerable<RaporDetayDto>>(raporDetayEntities);
-            return new SuccessDataResponse<IEnumerable<RaporDetayDto>>(raporDetayDtos);
+            return new DataResponse<IEnumerable<RaporDetayDto>>(raporDetayDtos,true);
         }
     }
 

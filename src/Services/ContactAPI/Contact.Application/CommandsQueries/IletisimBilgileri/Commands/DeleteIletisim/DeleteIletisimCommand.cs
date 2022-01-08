@@ -1,7 +1,6 @@
-﻿using AutoMapper;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using Contact.Application.Interfaces.Repositories;
-using Contact.Domain.Entities;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using System;
 using System.Threading;

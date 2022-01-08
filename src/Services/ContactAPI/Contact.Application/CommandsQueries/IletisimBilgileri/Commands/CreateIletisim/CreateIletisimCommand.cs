@@ -1,7 +1,7 @@
-﻿using AutoMapper;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using System;
 using System.Threading;
@@ -33,7 +33,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateI
             var entity=_mapper.Map<CreateIletisimCommand, Iletisim>(request);
             entity.Id = Guid.NewGuid();
             await _iletisimRepository.Add(entity);
-            return new SuccessDataResponse<Guid>(entity.Id);
+            return new DataResponse<Guid>(entity.Id,true);
         }
     }
 

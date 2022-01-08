@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ContactReport.Application.Common.Exceptions
+namespace Assesment.Core.Exceptions
 {
     public class NotFoundException : Exception
     {

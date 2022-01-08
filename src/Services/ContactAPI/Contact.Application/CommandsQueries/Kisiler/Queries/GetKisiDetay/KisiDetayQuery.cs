@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using Assesment.Core.Exceptions;
+using Assesment.Core.Results;
+using AutoMapper;
 using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
-using ContactReport.Application.Common.Exceptions;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using System;
 using System.Threading;
@@ -33,13 +33,12 @@ namespace Contact.Application.CommandsQueries.Kisiler.Queries.GetKisiDetay
             if (kisi == null)
             {
                 var exception = new NotFoundException(nameof(Kisi), request.Id);
-                var response = new ErrorDataResponse<NotFoundException>(exception);
+                var response = new DataResponse<NotFoundException>(exception,false);
                 return response;
             }
 
             var kisiDto = _mapper.Map<Kisi, KisiVeIletisimDto>(kisi);
-            await _kisiRepository.Delete(request.Id);
-            return new SuccessDataResponse<KisiVeIletisimDto>(kisiDto);
+            return new DataResponse<KisiVeIletisimDto>(kisiDto,true);
         }
     }
 }

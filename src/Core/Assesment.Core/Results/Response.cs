@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-namespace Karatekin.Web.Api.Core.Utilities.Result
+namespace Assesment.Core.Results
 {
     public class Response
     {

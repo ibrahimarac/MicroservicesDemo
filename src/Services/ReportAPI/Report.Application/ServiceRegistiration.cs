@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Report.Application.CommandQueries.RaporDurumIslemleri.Commands.CreateRaporDurum;
-using Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor;
 using System.Reflection;
 
 namespace Report.Application

@@ -1,6 +1,6 @@
-﻿using Contact.Application.Interfaces.Repositories;
-using Core.Application.Models;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Models;
+using Assesment.Core.Results;
+using Contact.Application.Interfaces.Repositories;
 using MediatR;
 using System.Linq;
 using System.Threading;

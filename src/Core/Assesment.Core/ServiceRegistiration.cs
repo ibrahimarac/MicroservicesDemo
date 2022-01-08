@@ -1,8 +1,8 @@
-﻿using Core.Application.Behaviors;
+﻿using Assesment.Core.Behaviors;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.Application
+namespace Assesment.Core
 {
     public static class ServiceRegistiration
     {

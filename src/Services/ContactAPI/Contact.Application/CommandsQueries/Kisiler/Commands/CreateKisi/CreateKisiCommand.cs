@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using System;
 using System.Threading;
@@ -36,7 +36,7 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.CreateKisi
             kisiEntity.Id = Guid.NewGuid();
 
             await _kisiRepository.Add(kisiEntity);
-            return new SuccessDataResponse<Guid>(kisiEntity.Id);
+            return new DataResponse<Guid>(kisiEntity.Id,true);
         }
     }
 

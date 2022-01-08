@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
-using Newtonsoft.Json;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;

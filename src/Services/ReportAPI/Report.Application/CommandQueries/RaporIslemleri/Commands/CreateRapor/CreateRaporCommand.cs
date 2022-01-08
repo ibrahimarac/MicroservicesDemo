@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Report.Application.Interfaces.Repositories;
@@ -39,19 +39,9 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor
                     DurumId = new Guid("54a0bfc0-d88d-4e75-a067-9547e977c926")
                 };
                 await repo.Add(entity);
-                return new SuccessDataResponse<Guid>(entity.Id);
+                return new DataResponse<Guid>(entity.Id,true);
             }
         }
-        
-
-        //var entity = new Rapor
-        //    {
-        //        Id = Guid.NewGuid(),
-        //        DurumId = new Guid("54a0bfc0-d88d-4e75-a067-9547e977c926")
-        //    };
-        //    await _raporRepository.Add(entity);
-        //    return new SuccessDataResponse<Guid>(entity.Id);
-        //}
     }
 
 }

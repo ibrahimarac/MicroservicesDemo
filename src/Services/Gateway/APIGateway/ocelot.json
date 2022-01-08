@@ -1,0 +1,267 @@
+{
+  "Routes": [
+    //ContactAPI-Kisi ile ilgili yönlendirmeler
+    {
+      "DownstreamPathTemplate": "/api/kisi/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/kisi/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/kisi/delete/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "contacts"
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/kisi/update/{id}",
+      "UpstreamHttpMethod": [ "Put" ],
+      "SwaggerKey": "contacts"
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/kisi/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "contacts"
+    },
+    {
+      "DownstreamPathTemplate": "/api/kisi/get",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/kisi/get",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "contacts"
+    },
+    //ContactAPI-Iletisim ile ilgili yönlendirmeler
+    {
+      "DownstreamPathTemplate": "/api/iletisim/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/iletisim/create",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "contacts"
+    },
+    {
+      "DownstreamPathTemplate": "/api/iletisim/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/iletisim/delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/iletisim/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/iletisim/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/iletisim/get-by-konum/{konum}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 60000
+        }
+      ],
+      "UpstreamPathTemplate": "/iletisim/get-by-konum/{konum}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //ReportAPI-RaporDurum ile ilgili yönlendirmeler
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor-durum/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor-durum/delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor-durum/update/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor-durum/get",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor-durum/get",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //ReportAPI.Rapor ile ilgili yönlendirmeler
+    {
+      "DownstreamPathTemplate": "/api/rapor/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor/update/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/detail/get",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor/detay/get",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/detail/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor/detay/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rapor/get/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/rapor/get/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //Belge talepleri ile ilgili yönlendirmeler burada yapýlacak
+    {
+      "DownstreamPathTemplate": "/api/rapor/get-by-konum/{konum}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50000
+        }
+      ],
+      "UpstreamPathTemplate": "/talep/rapor/get-by-konum/{konum}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:30000"
+  },
+  "SwaggerEndPoints": [
+    {
+      "Key": "contact",
+      "Config": [
+        {
+          "Name": "Kiþi API",
+          "Version": "v1",
+          "Url": "http://localhost:60000/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "report",
+      "Config": [
+        {
+          "Name": "Kiþi API",
+          "Version": "v1",
+          "Url": "http://localhost:60000/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}

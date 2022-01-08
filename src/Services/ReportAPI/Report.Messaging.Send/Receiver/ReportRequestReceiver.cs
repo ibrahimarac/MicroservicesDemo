@@ -1,11 +1,10 @@
-﻿using Core.Application.Models;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Models;
+using Assesment.Core.Results;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using OfficeOpenXml;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Report.Application.CommandQueries.RaporIslemleri.Commands.CreateRapor;
@@ -14,8 +13,6 @@ using Report.Application.Interfaces.Common;
 using Report.Messaging.Send.Options;
 using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -101,11 +98,11 @@ namespace Report.Messaging.Send.Receiver
             {
                 //rapora verilen id değerini öğrenelim.
                 //bu değeri rapor durumunu değiştirmek için kullanacağız.
-                var raporId = (addRaporToDbResponse as SuccessDataResponse<Guid>).Data;
+                var raporId = (addRaporToDbResponse as DataResponse<Guid>).Data;
 
                 var raporBilgileriResponse = await CollectReportInfoAsync(konum);
 
-                //Olayı simule etmek amacıyla gecikme verelim.
+                //Olayı simüle etmek amacıyla gecikme verelim.
                 await Task.Delay(10000);
 
                 //rapor bilgileri başarıyla alındı.
@@ -114,6 +111,7 @@ namespace Report.Messaging.Send.Receiver
                     //Excel dosyasına verileri yaz.
                     string path=await _excelBuilder.CreateExcelFileAsync(raporId,raporBilgileriResponse);
 
+                    //Raporun path bilgisini ve durumunu güncelle
                     await UpdateReportStatus(raporId, path);
                 }
             }
@@ -139,7 +137,6 @@ namespace Report.Messaging.Send.Receiver
         }
 
 
-
         private async Task<RaporTalep> CollectReportInfoAsync(string konum)
         {
             //Bu konum bilgisine ait raporun talep edildiği bilgisi Contact api'ye gönderilerek
@@ -162,45 +159,6 @@ namespace Report.Messaging.Send.Receiver
             }
             return null;
         }
-
-
-
-        private async Task<string> CreateExcelFileAsync(Guid raporId,RaporTalep rapor)
-        {
-            return await Task.Run(() =>
-            {
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                using (ExcelPackage excel = new ExcelPackage())
-                {
-                    excel.Workbook.Worksheets.Add("Worksheet1");
-                    excel.Workbook.Worksheets.Add("Worksheet2");
-                    excel.Workbook.Worksheets.Add("Worksheet3");
-
-                    var headerRow = new List<string[]>()
-                      {
-                        new string[] { "Konum", "Kişi Sayısı", "Telno Sayısı" },
-                        new string[]{rapor.Konum,rapor.KisiSayisi.ToString(),rapor.TelnoSayisi.ToString()}
-                      };
-
-                    // Değerlerin yazılacağı hücre aralığı
-                    string headerRange = "A1:C1";
-
-                    // Hedef çalışma sayfası
-                    var worksheet = excel.Workbook.Worksheets["Worksheet1"];
-
-                    // Verileri ilgili hücrelere yansıt.
-                    worksheet.Cells[headerRange].LoadFromArrays(headerRow);
-
-                    var filePath = Path.Combine(_environment.ContentRootPath,"files", $"{raporId}.xlsx");
-
-                    FileInfo excelFile = new FileInfo(filePath);
-                    excel.SaveAs(excelFile);
-                    return filePath;
-                }
-            });
-            
-        }
-
 
 
         private void OnConsumerConsumerCancelled(object sender, ConsumerEventArgs e)

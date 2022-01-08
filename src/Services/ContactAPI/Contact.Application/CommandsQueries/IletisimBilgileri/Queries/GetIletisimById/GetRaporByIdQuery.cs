@@ -1,11 +1,10 @@
-﻿using AutoMapper;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
 using Contact.Domain.Entities;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +30,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIleti
         {
             var iletisimEntity = await _iletisimRepository.GetById(request.Id);
             var iletisimDto=_mapper.Map<Iletisim, IletisimDto>(iletisimEntity);
-            return new SuccessDataResponse<IletisimDto>(iletisimDto);
+            return new DataResponse<IletisimDto>(iletisimDto,true);
         }
     }
 

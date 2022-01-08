@@ -2,9 +2,9 @@
 using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateIletisim;
 using Contact.Application.CommandsQueries.IletisimBilgileri.Commands.DeleteIletisim;
 using Contact.Application.CommandsQueries.IletisimBilgileri.Queries.GetIletisimById;
+using Contact.Application.CommandsQueries.RaporRequest.Commands;
 using Contact.Application.Dtos;
 using MediatR;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -52,7 +52,15 @@ namespace Contact.API.Controllers
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
-       
+        [HttpGet]
+        [Route("get-by-konum/{konum}")]
+        public async Task<IActionResult> GetByKonum(string konum)
+        {
+            var command = new RaporTalepCommand { Konum = konum };
+            var result = await _mediator.Send(command);
+            //Eğer rapor bilgileri başarılı bir şekilde elde edilmişse
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
 
 
     }

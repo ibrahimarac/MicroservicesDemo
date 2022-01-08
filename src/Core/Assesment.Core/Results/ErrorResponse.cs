@@ -1,4 +1,4 @@
-﻿namespace Karatekin.Web.Api.Core.Utilities.Result
+﻿namespace Assesment.Core.Results
 {
     public class ErrorResponse : Response
     {

@@ -1,5 +1,5 @@
 ﻿
-using Core.Application.Models;
+using Assesment.Core.Models;
 using Microsoft.Extensions.Hosting;
 using OfficeOpenXml;
 using Report.Application.Interfaces.Common;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Report.Infrastructure.Services
 {
-    public class ExcelFileBuilder:IExcelFileBuilder
+    public class ExcelFileBuilder : IExcelFileBuilder
     {
         private readonly IHostEnvironment _environment;
 
@@ -54,4 +54,6 @@ namespace Report.Infrastructure.Services
                 }
             });
         }
+    }
+
 }

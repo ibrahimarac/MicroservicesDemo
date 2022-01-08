@@ -25,19 +25,19 @@ namespace APIGateway
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIGateway", Version = "v1" });
-            });
+
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Gateway", Version = "v1" });
+            //});
 
             services.AddOcelot(Configuration);
-            //   .AddAppConfiguration();
 
-            //services.AddSwaggerForOcelot(Configuration);
+            services.AddSwaggerForOcelot(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -46,12 +46,12 @@ namespace APIGateway
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIGateway v1"));
             }
 
-            //app.UseSwaggerForOcelotUI(opt =>
-            //{
-            //    opt.PathToSwaggerGenerator = "/swagger/docs";
-            //});
+            app.UseSwaggerForOcelotUI(opt =>
+            {
+                opt.PathToSwaggerGenerator = "/swagger/docs";
+            });
 
-            app.UseOcelot();
+            await app.UseOcelot();
 
             //app.UseHttpsRedirection();
 

@@ -17,7 +17,7 @@ namespace Contact.Infrastructure.Repositories
         public async Task<Kisi> GetKisiDetail(Guid kisiId)
         {
             return await (Context as IContactDbContext).Kisiler.Include(k => k.IletisimBilgileri)
-                .SingleOrDefaultAsync(k => k.Id == kisiId);
+                .FirstOrDefaultAsync(k => k.Id == kisiId);
         }
     }
 }

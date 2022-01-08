@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using ContactReport.Application.Common.Exceptions;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Exceptions;
+using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
@@ -34,7 +34,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.UpdateR
             if (raporDurumEntity == null)
             {
                 var exception = new NotFoundException(nameof(RaporDurum), request.Id);
-                var response = new ErrorDataResponse<NotFoundException>(exception);
+                var response = new DataResponse<NotFoundException>(exception,false);
                 return response;
             }
             var kisiUpdatedEntity = _mapper.Map(request, raporDurumEntity);

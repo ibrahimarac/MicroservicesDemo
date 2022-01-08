@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Assesment.Core.Results;
 using FluentValidation;
 using FluentValidation.Results;
-using Karatekin.Web.Api.Core.Utilities.Result;
 using MediatR;
 
-namespace Core.Application.Behaviors
+namespace Assesment.Core.Behaviors
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
@@ -31,7 +31,7 @@ namespace Core.Application.Behaviors
 
                 if (failures.Count != 0)
                 {
-                    var validatonErrorResponse = new ErrorDataResponse<IEnumerable<ValidationFailure>>(failures, "");
+                    var validatonErrorResponse = new DataResponse<IEnumerable<ValidationFailure>>(failures, false);
                     return validatonErrorResponse as TResponse;
                 }
                     

@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
@@ -31,7 +31,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Queries.GetRapor
             var raporDurumlar = await _raporDurumRepository.GetAll();
             var raporDurumlarDto = _mapper.Map<IEnumerable<RaporDurum>, IEnumerable<RaporDurumDto>>(raporDurumlar);
 
-            return new SuccessDataResponse<IEnumerable<RaporDurumDto>>(raporDurumlarDto);
+            return new DataResponse<IEnumerable<RaporDurumDto>>(raporDurumlarDto,true);
         }
     }
 

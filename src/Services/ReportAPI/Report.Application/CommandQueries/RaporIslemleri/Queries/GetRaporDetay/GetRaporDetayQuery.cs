@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using ContactReport.Application.Common.Exceptions;
-using Karatekin.Web.Api.Core.Utilities.Result;
+﻿using Assesment.Core.Exceptions;
+using Assesment.Core.Results;
+using AutoMapper;
 using MediatR;
 using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
@@ -34,12 +34,12 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Queries.GetRaporDetay
             if (raporDetayEntity == null)
             {
                 var exception = new NotFoundException(nameof(Rapor), request.Id);
-                var response = new ErrorDataResponse<NotFoundException>(exception);
+                var response = new DataResponse<NotFoundException>(exception,false);
                 return response;
             }
 
             var raporDetayDto = _mapper.Map<Rapor, RaporDetayDto>(raporDetayEntity);
-            return new SuccessDataResponse<RaporDetayDto>(raporDetayDto);
+            return new DataResponse<RaporDetayDto>(raporDetayDto,true);
         }
     }
 

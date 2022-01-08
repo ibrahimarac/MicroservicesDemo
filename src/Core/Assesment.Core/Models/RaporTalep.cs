@@ -1,7 +1,4 @@
-﻿
-using System.Runtime.Serialization;
-
-namespace Core.Application.Models
+﻿namespace Assesment.Core.Models
 {
     public class RaporTalep
     {
