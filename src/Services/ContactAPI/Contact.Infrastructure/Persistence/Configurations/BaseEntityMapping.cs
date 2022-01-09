@@ -10,7 +10,8 @@ namespace Contact.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id)
-                 .HasColumnName("id");
+                 .HasColumnName("id")
+                 .HasColumnType("uuid");
 
             builder.Property(b => b.CreateDate)
                 .HasColumnName("create_date");

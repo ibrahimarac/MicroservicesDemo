@@ -53,10 +53,11 @@ namespace Contact.Infrastructure.Repositories
             return item;
         }
 
-        public async Task Update(TEntity entity)
+        public async Task<TEntity> Update(TEntity entity)
         {
             _entities.Update(entity);
             await Context.SaveChangesAsync();
+            return entity;
         }
 
         protected DbContext Context

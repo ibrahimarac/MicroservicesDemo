@@ -11,9 +11,9 @@ namespace Contact.Infrastructure.Persistence
 {
     public class ContactDbContext : DbContext, IContactDbContext
     {
-        public ContactDbContext(DbContextOptions<ContactDbContext> options):base(options)
+        public ContactDbContext(DbContextOptions<ContactDbContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<Kisi> Kisiler { get; set; }

@@ -13,6 +13,6 @@ namespace Contact.Application.Interfaces.Repositories
 
         Task<TEntity> Add(TEntity entity);
         Task Delete(Guid id);
-        Task Update(TEntity entity);
+        Task<TEntity> Update(TEntity entity);
     }
 }

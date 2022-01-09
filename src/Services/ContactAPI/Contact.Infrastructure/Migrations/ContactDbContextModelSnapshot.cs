@@ -15,6 +15,7 @@ namespace Contact.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasPostgresExtension("uuid-ossp")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -24,7 +25,8 @@ namespace Contact.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp without time zone")
@@ -55,6 +57,9 @@ namespace Contact.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Id")
+                        .IsUnique();
+
                     b.HasIndex("KisiId");
 
                     b.ToTable("iletisim_bilgileri");
@@ -63,21 +68,21 @@ namespace Contact.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("1b85d9b8-7b7c-4efc-893e-45045c50d282"),
-                            CreateDate = new DateTime(2022, 1, 7, 4, 38, 40, 8, DateTimeKind.Local).AddTicks(1720),
+                            CreateDate = new DateTime(2022, 1, 9, 17, 30, 32, 269, DateTimeKind.Local).AddTicks(2025),
                             Email = "kisi1@gmail.com",
                             KisiId = new Guid("27714296-cbce-4ad3-a8fa-4980ac44987c"),
                             Konum = "ANKARA",
-                            LastupDate = new DateTime(2022, 1, 7, 4, 38, 40, 8, DateTimeKind.Local).AddTicks(1729),
+                            LastupDate = new DateTime(2022, 1, 9, 17, 30, 32, 269, DateTimeKind.Local).AddTicks(2033),
                             Telefon = "(505)999 99 99"
                         },
                         new
                         {
                             Id = new Guid("072593f9-cde8-4e75-a20a-c1e923580ae0"),
-                            CreateDate = new DateTime(2022, 1, 7, 4, 38, 40, 8, DateTimeKind.Local).AddTicks(3907),
+                            CreateDate = new DateTime(2022, 1, 9, 17, 30, 32, 269, DateTimeKind.Local).AddTicks(4154),
                             Email = "kisi2@gmail.com",
                             KisiId = new Guid("3acf9782-999a-4364-aee6-c692f9d4ad4f"),
                             Konum = "İSTANBUL",
-                            LastupDate = new DateTime(2022, 1, 7, 4, 38, 40, 8, DateTimeKind.Local).AddTicks(3912),
+                            LastupDate = new DateTime(2022, 1, 9, 17, 30, 32, 269, DateTimeKind.Local).AddTicks(4159),
                             Telefon = "(505)555 55 55"
                         });
                 });
@@ -87,7 +92,8 @@ namespace Contact.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<string>("Ad")
                         .HasMaxLength(30)
@@ -114,6 +120,9 @@ namespace Contact.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Id")
+                        .IsUnique();
+
                     b.ToTable("kisiler");
 
                     b.HasData(
@@ -121,18 +130,18 @@ namespace Contact.Infrastructure.Migrations
                         {
                             Id = new Guid("27714296-cbce-4ad3-a8fa-4980ac44987c"),
                             Ad = "ad1",
-                            CreateDate = new DateTime(2022, 1, 7, 4, 38, 40, 6, DateTimeKind.Local).AddTicks(5018),
+                            CreateDate = new DateTime(2022, 1, 9, 17, 30, 32, 267, DateTimeKind.Local).AddTicks(5429),
                             Firma = "firma1",
-                            LastupDate = new DateTime(2022, 1, 7, 4, 38, 40, 6, DateTimeKind.Local).AddTicks(2535),
+                            LastupDate = new DateTime(2022, 1, 9, 17, 30, 32, 267, DateTimeKind.Local).AddTicks(2983),
                             Soyad = "soyad1"
                         },
                         new
                         {
                             Id = new Guid("3acf9782-999a-4364-aee6-c692f9d4ad4f"),
                             Ad = "ad2",
-                            CreateDate = new DateTime(2022, 1, 7, 4, 38, 40, 6, DateTimeKind.Local).AddTicks(5522),
+                            CreateDate = new DateTime(2022, 1, 9, 17, 30, 32, 267, DateTimeKind.Local).AddTicks(5928),
                             Firma = "firma2",
-                            LastupDate = new DateTime(2022, 1, 7, 4, 38, 40, 6, DateTimeKind.Local).AddTicks(5510),
+                            LastupDate = new DateTime(2022, 1, 9, 17, 30, 32, 267, DateTimeKind.Local).AddTicks(5916),
                             Soyad = "soyad2"
                         });
                 });
