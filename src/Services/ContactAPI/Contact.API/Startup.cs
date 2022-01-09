@@ -1,3 +1,4 @@
+using Assesment.Core;
 using Contact.Application;
 using Contact.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ namespace Contact.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Contact.API", Version = "v1" });
             });
 
+            services.AddCoreServices();
             services.AddContactPersistenceServices();
             services.AddContactApplicationServices();
         }

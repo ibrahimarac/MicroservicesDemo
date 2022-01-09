@@ -8,6 +8,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateI
         public CreateIletisimCommandValidator()
         {
             RuleFor(p => p.Email)
+                .EmailAddress().WithMessage("Geçerli bir eposta adresi girilmedi.")
                 .MaximumLength(150).WithMessage("Eposta adresi en fazla 150 karakter olabilir.");
 
             RuleFor(p => p.Konum)

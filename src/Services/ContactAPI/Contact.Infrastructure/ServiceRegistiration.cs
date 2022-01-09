@@ -14,7 +14,7 @@ namespace Contact.Application
             //Posgre context
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ContactDbContext>(
-                    opt => opt.UseNpgsql("User ID=postgres;Password=123456;Server=localhost;Port=5432;Database=ContactDB;Integrated Security=true;Pooling=true")
+                    opt => opt.UseNpgsql("User ID=postgres;Password=123456;Server=localhost;Port=5432;Database=ContactDB;Integrated Security=true;Pooling=true"),ServiceLifetime.Transient
                 );
 
             services.AddTransient<IContactDbContext, ContactDbContext>();

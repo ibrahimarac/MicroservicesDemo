@@ -1,4 +1,5 @@
-﻿using Assesment.Core.Results;
+﻿using Assesment.Core.Exceptions;
+using Assesment.Core.Results;
 using AutoMapper;
 using Contact.Application.Interfaces.Repositories;
 using MediatR;
@@ -16,18 +17,22 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Commands.DeleteI
     public class DeleteIletisimCommandHandler : IRequestHandler<DeleteIletisimCommand, Response>
     {
         private readonly IIletisimRepository _iletisimRepository;
-        private readonly IMapper _mapper;
 
-        public DeleteIletisimCommandHandler(IIletisimRepository iletisimRepository,IMapper mapper)
+        public DeleteIletisimCommandHandler(IIletisimRepository iletisimRepository)
         {
             _iletisimRepository = iletisimRepository;
-            _mapper = mapper;
         }
 
         public async Task<Response> Handle(DeleteIletisimCommand request, CancellationToken cancellationToken)
         {
+            var iletisimEntity = await _iletisimRepository.GetById(request.Id);
+
+            if (iletisimEntity == null)
+                return new Response(false, $"{request.Id} anahtarına sahip bir kayıt bulunamadı.");
+            
             await _iletisimRepository.Delete(request.Id);
-            return new SuccessResponse();
+
+            return new Response(true,"");
         }
     }
 

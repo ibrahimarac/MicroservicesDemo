@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Assesment.Core.Results;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
@@ -8,6 +9,7 @@ namespace Assesment.Core.Behaviors
 {
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
+        where TResponse:Response
     {
         private readonly ILogger<TRequest> _logger;
 

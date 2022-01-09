@@ -7,9 +7,9 @@ namespace Report.Application.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity:class
     {
-        Task<IEnumerable<TEntity>> GetAll();
-        Task<IEnumerable<TEntity>> GetByFilter(Expression<Func<TEntity, bool>> filter);
-        Task<TEntity> GetById(Guid id);
+        Task<IEnumerable<TEntity>> GetAll(bool tracking=false);
+        Task<IEnumerable<TEntity>> GetByFilter(Expression<Func<TEntity, bool>> filter, bool tracking = false);
+        Task<TEntity> GetById(Guid id, bool tracking = false);
 
         Task<TEntity> Add(TEntity entity);
         Task Delete(Guid id);

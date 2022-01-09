@@ -20,7 +20,8 @@ namespace Contact.Application.Mappings
             CreateMap<UpdateKisiCommand, KisiUpdateDto>().ReverseMap();
 
             CreateMap<Iletisim, IletisimDto>().ReverseMap();
-            CreateMap<Iletisim, CreateIletisimCommand>().ReverseMap();
+            CreateMap<IletisimDto, CreateIletisimCommand>().ReverseMap();
+            CreateMap<CreateIletisimCommand, Iletisim>().ReverseMap();
         }
     }
 }

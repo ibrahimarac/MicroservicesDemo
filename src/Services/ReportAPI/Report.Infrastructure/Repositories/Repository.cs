@@ -35,22 +35,30 @@ namespace Contact.Infrastructure.Repositories
             await Context.SaveChangesAsync(new CancellationToken(false));
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll(bool tracking = false)
         {
-            var items = await _entities.ToListAsync();
-            return items;
+            return tracking ?
+                await _entities.ToListAsync()
+                :
+                await _entities.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetByFilter(Expression<Func<TEntity, bool>> filter)
+        public async Task<IEnumerable<TEntity>> GetByFilter(Expression<Func<TEntity, bool>> filter, bool tracking = false)
         {
-            var items=await _entities.Where(filter).ToListAsync();
-            return items;
+            return tracking ?
+                await _entities.Where(filter).AsNoTracking().ToListAsync()
+                :
+                await _entities.Where(filter).ToListAsync();
         }
 
-        public async Task<TEntity> GetById(Guid id)
+        public async Task<TEntity> GetById(Guid id, bool tracking = false)
         {
-            var item= await _entities.FindAsync(id);
-            return item;
+            var entity = await _entities.FindAsync(id);
+
+            if (!tracking && entity != null)
+                Context.Entry(entity).State = EntityState.Detached;
+
+            return entity;
         }
 
         public async Task<TEntity> Update(TEntity entity)

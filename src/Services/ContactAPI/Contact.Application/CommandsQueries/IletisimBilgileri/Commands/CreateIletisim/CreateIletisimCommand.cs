@@ -20,11 +20,17 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateI
     public class CreateIletisimCommandHandler : IRequestHandler<CreateIletisimCommand, Response>
     {
         private readonly IIletisimRepository _iletisimRepository;
+        private readonly IKisiRepository _kisiRepository;
         private readonly IMapper _mapper;
 
-        public CreateIletisimCommandHandler(IIletisimRepository iletisimRepository,IMapper mapper)
+        public CreateIletisimCommandHandler(
+            IIletisimRepository iletisimRepository,
+            IKisiRepository kisiRepository,
+            IMapper mapper
+        )
         {
             _iletisimRepository = iletisimRepository;
+            _kisiRepository = kisiRepository;
             _mapper = mapper;
         }
 
@@ -33,7 +39,7 @@ namespace Contact.Application.CommandsQueries.IletisimBilgileri.Commands.CreateI
             var entity=_mapper.Map<CreateIletisimCommand, Iletisim>(request);
             entity.Id = Guid.NewGuid();
             await _iletisimRepository.Add(entity);
-            return new DataResponse<Guid>(entity.Id,true);
+            return new DataResponse<Guid>(entity.Id, true);
         }
     }
 
