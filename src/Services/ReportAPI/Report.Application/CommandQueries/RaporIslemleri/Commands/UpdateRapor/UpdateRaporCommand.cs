@@ -31,8 +31,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
             var entity = await _raporRepository.GetById(request.Id);
             if(entity==null)
             {
-                var exception = new NotFoundException(nameof(Rapor), request.Id);
-                var response = new DataResponse<NotFoundException>(exception,false);
+                var response = new DataResponse<Rapor>(null,false,$"{entity.Id} anahtar değerine sahip bir rapor bulunamadı.");
                 return response;
             }
             //rapor bilgileri güncelleniyor
@@ -40,7 +39,7 @@ namespace Report.Application.CommandQueries.RaporIslemleri.Commands.UpdateRapor
             entity.Path = request.Rapor.Path;
 
             await _raporRepository.Update(entity);
-            return new SuccessResponse();
+            return new DataResponse<Rapor>(entity,true);
         }
     }
 

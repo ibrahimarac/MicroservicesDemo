@@ -28,7 +28,7 @@ namespace Report.API.Controllers
         [Route("create")]
         public async Task<IActionResult> Create(RaporDurumCreateDto raporDurum)
         {
-            var result = await _mediator.Send(new CreateRaporDurumCommand { Durum=raporDurum});
+            var result = await _mediator.Send(new CreateRaporDurumCommand { Durum=raporDurum.RaporDurum});
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
@@ -45,7 +45,7 @@ namespace Report.API.Controllers
         [Route("update/{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] RaporDurumUpdateDto raporDurum)
         {
-            var command = new UpdateRaporDurumCommand { Id = id, RaporDurum = raporDurum };
+            var command = new UpdateRaporDurumCommand { Id = id, Durum=raporDurum.Durum };
             var result = await _mediator.Send(command);
             return result.Success ? Ok(result) : BadRequest(result);
         }

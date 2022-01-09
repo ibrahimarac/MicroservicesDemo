@@ -31,14 +31,13 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.DeleteKisi
             var kisi = await _kisiRepository.GetById(request.Id);
             if(kisi==null)
             {
-                var exception = new NotFoundException(nameof(Kisi), request.Id);
-                var response = new DataResponse<NotFoundException>(exception,false);
+                var response = new Response(false,$"{request.Id} anahtarına sahip bir kişi bulunamadı.");
                 return response;
             }
 
             var kisiEntity = _mapper.Map<DeleteKisiCommand, Kisi>(request);
             await _kisiRepository.Delete(request.Id);
-            return new SuccessResponse();
+            return new Response(true,"");
         }
     }
 

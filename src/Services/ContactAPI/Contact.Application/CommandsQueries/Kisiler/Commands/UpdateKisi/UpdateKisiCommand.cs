@@ -1,5 +1,4 @@
-﻿using Assesment.Core.Exceptions;
-using Assesment.Core.Results;
+﻿using Assesment.Core.Results;
 using AutoMapper;
 using Contact.Application.Dtos;
 using Contact.Application.Interfaces.Repositories;
@@ -33,13 +32,12 @@ namespace Contact.Application.CommandsQueries.Kisiler.Commands.UpdateKisi
             var kisiEntity = await _kisiRepository.GetById(request.Id);
             if(kisiEntity==null)
             {
-                var exception = new NotFoundException(nameof(Kisi), request.Id);
-                var response = new DataResponse<NotFoundException>(exception,false);
+                var response = new DataResponse<Kisi>(null,false,$"{request.Id} anahtarına sahip kişi bulunamadı.");
                 return response;
             }
             var kisiUpdatedEntity = _mapper.Map(request.Kisi,kisiEntity);
             await _kisiRepository.Update(kisiEntity);
-            return new SuccessResponse();
+            return new DataResponse<Kisi>(kisiEntity,true,"");
         }
     }
 

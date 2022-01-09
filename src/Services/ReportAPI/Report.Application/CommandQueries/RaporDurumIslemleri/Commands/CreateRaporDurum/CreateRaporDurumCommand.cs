@@ -12,7 +12,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.CreateR
 {
     public class CreateRaporDurumCommand:IRequest<Response>
     {
-        public RaporDurumCreateDto Durum { get; set; }
+        public string Durum { get; set; }
     }
 
     public class CreateRaporDurumCommandHandler : IRequestHandler<CreateRaporDurumCommand, Response>
@@ -27,7 +27,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.CreateR
         }
         public async Task<Response> Handle(CreateRaporDurumCommand request, CancellationToken cancellationToken)
         {
-            var raporDurumEntity = new RaporDurum { Durum = request.Durum.RaporDurum };
+            var raporDurumEntity = new RaporDurum { Durum = request.Durum };
             raporDurumEntity.Id = Guid.NewGuid();
             await _raporDurumRepository.Add(raporDurumEntity);
             return new DataResponse<Guid>(raporDurumEntity.Id,true,"");

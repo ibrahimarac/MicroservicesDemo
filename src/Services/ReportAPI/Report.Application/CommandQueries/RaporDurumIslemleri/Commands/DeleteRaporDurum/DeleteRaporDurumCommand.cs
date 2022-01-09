@@ -31,13 +31,12 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.DeleteR
 
             if (raporDurumEntity == null)
             {
-                var exception = new NotFoundException(nameof(RaporDurum), request.Id);
-                var response = new DataResponse<NotFoundException>(exception,false);
+                var response = new Response(false,$"{request.Id} anahtarına sahip bir rapor durumu bulunamadı.");
                 return response;
             }
 
             await _raporDurumRepository.Delete(request.Id);
-            return new SuccessResponse();
+            return new Response(true,"");
         }
     }
 }

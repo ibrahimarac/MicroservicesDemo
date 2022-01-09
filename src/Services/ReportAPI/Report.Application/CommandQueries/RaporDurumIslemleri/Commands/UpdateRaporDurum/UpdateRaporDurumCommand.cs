@@ -1,8 +1,6 @@
-﻿using Assesment.Core.Exceptions;
-using Assesment.Core.Results;
+﻿using Assesment.Core.Results;
 using AutoMapper;
 using MediatR;
-using Report.Application.Dtos;
 using Report.Application.Interfaces.Repositories;
 using Report.Domain.Entities;
 using System;
@@ -14,7 +12,7 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.UpdateR
     public class UpdateRaporDurumCommand : IRequest<Response>
     {
         public Guid Id { get; set; }
-        public RaporDurumUpdateDto RaporDurum { get; set; }
+        public string Durum { get; set; }
     }
 
     public class UpdateRaporDurumCommandHandler : IRequestHandler<UpdateRaporDurumCommand, Response>
@@ -33,13 +31,12 @@ namespace Report.Application.CommandQueries.RaporDurumIslemleri.Commands.UpdateR
 
             if (raporDurumEntity == null)
             {
-                var exception = new NotFoundException(nameof(RaporDurum), request.Id);
-                var response = new DataResponse<NotFoundException>(exception,false);
+                var response = new DataResponse<RaporDurum>(null,false);
                 return response;
             }
-            var kisiUpdatedEntity = _mapper.Map(request, raporDurumEntity);
-            await _raporDurumRepository.Update(raporDurumEntity);
-            return new SuccessResponse();
+            var raporDurumUpdatedEntity = _mapper.Map(request, raporDurumEntity);
+            await _raporDurumRepository.Update(raporDurumUpdatedEntity);
+            return new DataResponse<RaporDurum>(raporDurumUpdatedEntity, true);
         }
     }
 }
