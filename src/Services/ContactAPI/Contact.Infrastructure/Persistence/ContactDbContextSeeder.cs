@@ -25,6 +25,14 @@ namespace Contact.Infrastructure.Persistence
                         Soyad = "soyad2",
                         CreateDate = DateTime.Now,
                         Firma = "firma2"
+                    },
+                    new Kisi
+                    {
+                        Id = new Guid("123f9782-999a-4364-aee6-c692f9d4ad4f"),
+                        Ad = "ad3",
+                        Soyad = "soyad3",
+                        CreateDate = DateTime.Now,
+                        Firma = "firma3"
                     }
                 );
         }
@@ -48,6 +56,22 @@ namespace Contact.Infrastructure.Persistence
                     Konum = "İSTANBUL",
                     Telefon = "(505)555 55 55",
                     KisiId = new Guid("3acf9782-999a-4364-aee6-c692f9d4ad4f")
+                },
+                new Iletisim
+                {
+                    Id = new Guid("abc593f9-cde8-4e75-a20a-c1e923580ae0"),
+                    Email = "kisi3@gmail.com",
+                    Konum = "İSTANBUL",
+                    Telefon = "(505)555 55 55",
+                    KisiId = new Guid("123f9782-999a-4364-aee6-c692f9d4ad4f")
+                },
+                new Iletisim
+                {
+                    Id = new Guid("cde593f9-cde8-4e75-a20a-c1e923580ae0"),
+                    Email = "kisi4@gmail.com",
+                    Konum = "İSTANBUL",
+                    Telefon = "(505)555 55 55",
+                    KisiId = new Guid("27714296-cbce-4ad3-a8fa-4980ac44987c")
                 }
             );
         }

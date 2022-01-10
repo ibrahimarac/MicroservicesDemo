@@ -1,4 +1,5 @@
-﻿using Assesment.Core.Results;
+﻿using Assesment.Core.Models;
+using Assesment.Core.Results;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -78,13 +79,27 @@ namespace Report.API.Controllers
 
         [HttpGet]
         [Route("get-by-konum/{konum}")]
-        public IActionResult GetByKonum(string konum)
+        public async Task<IActionResult> GetByKonum(string konum)
         {
-            //rapor isteği kuyruğa aktarılıyor
-            var result = _reportRequest.SendReportRequest(konum);
-            return result ?
-                Ok(new SuccessResponse("Rapor isteği sıraya alındı.")) :
-                BadRequest(new ErrorResponse("Rapor isteği gönderilirken bir hata oluştu."));
+            var createRaporCommand = new CreateRaporCommand();
+            var createRaporResult= await _mediator.Send(createRaporCommand);
+
+            if (createRaporResult.Success)
+            {
+                var raporInfo = new RaporInfo
+                {
+                    Id = (createRaporResult as DataResponse<Guid>).Data,
+                    Konum = konum
+                };
+
+                //rapor isteği kuyruğa aktarılıyor
+                var result = _reportRequest.SendReportRequest(raporInfo);
+                return result ?
+                    Ok(new SuccessResponse("Rapor isteği sıraya alındı.")) :
+                    BadRequest(new ErrorResponse("Rapor isteği gönderilirken bir hata oluştu."));
+            }
+
+            return BadRequest(new ErrorResponse("Rapor istek bilgileri veritabanına yazılamadı."));
         }
 
     }

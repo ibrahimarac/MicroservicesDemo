@@ -69,9 +69,9 @@ namespace Report.Messaging.Send.Receiver
             consumer.Received +=  async(ch, ea) =>
             {
                 //konum bilgisini alalım
-                var konum = Encoding.UTF8.GetString(ea.Body.ToArray());
+                var rapor = JsonConvert.DeserializeObject<RaporInfo>(Encoding.UTF8.GetString(ea.Body.ToArray()));
 
-                await HandleMessageAsync(konum);
+                await HandleMessageAsync(rapor);
 
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
@@ -85,35 +85,22 @@ namespace Report.Messaging.Send.Receiver
             await Task.CompletedTask;
         }
 
-        private async Task HandleMessageAsync(string konum)
+        private async Task HandleMessageAsync(RaporInfo rapor)
         {
-            var scope = _serviceFactory.CreateScope();
 
-            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            var raporBilgileriResponse = await CollectReportInfoAsync(rapor.Konum);
 
-            //Öncelikle raporu veritabanında rapor tablosuna kaydedelim.
-            var addRaporToDbResponse= await mediator.Send(new CreateRaporCommand());
-            //rapor başarıyla veritabanına kaydedilmişse
-            if(addRaporToDbResponse.Success)
+            //Olayı simüle etmek amacıyla gecikme verelim.
+            await Task.Delay(10000);
+
+            //rapor bilgileri başarıyla alındı.
+            if (raporBilgileriResponse != null)
             {
-                //rapora verilen id değerini öğrenelim.
-                //bu değeri rapor durumunu değiştirmek için kullanacağız.
-                var raporId = (addRaporToDbResponse as DataResponse<Guid>).Data;
+                //Excel dosyasına verileri yaz.
+                string path = await _excelBuilder.CreateExcelFileAsync(rapor.Id, raporBilgileriResponse);
 
-                var raporBilgileriResponse = await CollectReportInfoAsync(konum);
-
-                //Olayı simüle etmek amacıyla gecikme verelim.
-                await Task.Delay(10000);
-
-                //rapor bilgileri başarıyla alındı.
-                if (raporBilgileriResponse != null)
-                {
-                    //Excel dosyasına verileri yaz.
-                    string path=await _excelBuilder.CreateExcelFileAsync(raporId,raporBilgileriResponse);
-
-                    //Raporun path bilgisini ve durumunu güncelle
-                    await UpdateReportStatus(raporId, path);
-                }
+                //Raporun path bilgisini ve durumunu güncelle
+                await UpdateReportStatus(rapor.Id, path);
             }
         }
 

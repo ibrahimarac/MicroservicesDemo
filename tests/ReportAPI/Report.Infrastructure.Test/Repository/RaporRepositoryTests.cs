@@ -48,7 +48,7 @@ namespace Report.Infrastructure.Tests.Repository
             var rapor = Context.Raporlar.OrderByDescending(r => r.CreateDate).First();
 
             rapor.Path = path;
-            rapor.DurumId = Context.RaporDurumlar.Single(rd => rd.Durum == "TAMAMLANDI").Id;
+            rapor.DurumId = Context.RaporDurumlar.First().Id;
 
             await _testee.Update(rapor);
 
