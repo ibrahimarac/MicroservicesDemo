@@ -19,6 +19,11 @@ namespace Report.Infrastructure.Persistence
                     {
                         Id = new Guid("2143a48a-7190-4ee0-a894-743733ac09b9"),
                         Durum = "TAMAMLANDI"
+                    },
+                    new RaporDurum
+                    {
+                        Id = new Guid("1563a48a-7190-4ee0-a894-743733ac09b9"),
+                        Durum = "BİLİNMİYOR"
                     }
                 );
         }

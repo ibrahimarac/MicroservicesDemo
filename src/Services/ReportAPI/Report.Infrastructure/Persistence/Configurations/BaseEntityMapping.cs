@@ -15,6 +15,9 @@ namespace Report.Infrastructure.Persistence.Configurations
 
             builder.Property(b => b.CreateDate)
                 .HasColumnName("create_date");
+
+            builder.Property(b => b.LastupDate)
+                .HasColumnName("lastup_date");
         }
     }
 }
