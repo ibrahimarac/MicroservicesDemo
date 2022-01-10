@@ -18,6 +18,10 @@
 
 8-) EPPlus nuget package (Excel dosyası üretmek için)
 
+9-) Ocelot
+
+10-) Swagger for ocelot
+
 
 **Endpoint Bilgileri**
 
